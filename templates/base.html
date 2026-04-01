@@ -8,10 +8,13 @@
 <body>
     <header>
         <h1>Tippspiel</h1>
+        {% if request.endpoint not in ['login', 'home'] %}
+         
         <nav>
             <a href="/">Startseite</a>
             <a href="/tippspiel">Tippspiel</a>
         </nav>
+        {% endif %}
     </header>
 
     <main>
