@@ -8,7 +8,7 @@
     <section>
         <h3>Neues Wettspiel</h3>
         <p>Erstelle eine neue Wettrunde.</p>
-        <p><a href="/create-round">Neues Tippspiel erstellen</a></p>
+        <p><a href="/create-round" class="button">Neues Tippspiel erstellen</a></p>
     </section>
 
     <section>
@@ -16,20 +16,20 @@
         <form method="POST">
             <label for="round_name">Name der Wettrunde:</label><br>
             <input type="text" id="round_name" name="round_name" required><br><br>
-            <button type="submit">Beitreten</button>
+            <button type="submit" class="button">Beitreten</button>
         </form>
     </section>
 
     <section>
         <h3>Meine Wettspiele</h3>
         <ul>
-            <li><a href="/tippspiel"> test</a></li>
+            <li><a href="/tippspiel" class="button"> test</a></li>
         </ul>
     </section>
 
     <section>
         <h3>Logout</h3>
-        <p><a href="/login">Abmelden</a></p>
+        <p><a href="/login" class="button">Abmelden</a></p>
         
     </section>
 {% endblock %}

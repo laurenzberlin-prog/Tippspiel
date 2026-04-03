@@ -22,16 +22,22 @@
         <h3>Spiele und Tipps</h3>
         <p>Deine Spiele und Tipps:</p>
     </section>
-x
+
     <section>
         <h3>Rangliste</h3>
         <p>Rangliste der Teilnehmenden:</p>
     </section>
 
     <section>
+       
+    </section>
+
+    <section>
         <h3>Aktionen</h3>
-        <ul>
-            <li><a href="/dashboard">Zurück zum Dashboard</a></li>
-        </ul>
+        <form method="POST" action="/leave-round">
+            <button type="submit" class="button">Tipprunde verlassen</button>
+        </form>
+
+        <p><a href="/dashboard" class="button">Zurück zum Dashboard</a></p>
     </section>
 {% endblock %}
