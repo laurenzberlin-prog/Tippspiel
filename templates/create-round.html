@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Tipprunde erstellen{% endblock %}
+
+{% block content %}
+    <h2>Neue Tipprunde erstellen</h2>
+
+    <form method="POST">
+        <label for="round_name">Name der Tipprunde:</label><br>
+        <input type="text" id="round_name" name="round_name" required><br><br>
+
+        <label for="description">Beschreibung:</label><br>
+        <textarea id="description" name="description"></textarea><br><br>
+
+        <button type="submit">Erstellen</button>
+    </form>
+
+    <p><a href="/dashboard">Zurück </a></p>
+{% endblock %}
