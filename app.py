@@ -18,6 +18,10 @@ def register():
 def dashboard():
     return render_template("dashboard.html")
 
+@app.route("/create-round")
+def create_round():
+    return render_template("create-round.html")
+
 @app.route("/tippspiel")
 def tippspiel():
     return render_template("tippspiel.html")
