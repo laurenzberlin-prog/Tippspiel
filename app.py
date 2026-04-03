@@ -14,6 +14,10 @@ def login():
 def register():
     return render_template("register.html")
 
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")
+
 @app.route("/tippspiel")
 def tippspiel():
     return render_template("tippspiel.html")
