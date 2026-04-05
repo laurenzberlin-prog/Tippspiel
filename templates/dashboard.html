@@ -5,13 +5,13 @@
 {% block content %}
     
 
-    <section>
+    <section class="card">
         <h3>Neues Wettspiel</h3>
         <p>Erstelle eine neue Wettrunde.</p>
         <p><a href="/create-round" class="button">Neues Tippspiel erstellen</a></p>
     </section>
 
-    <section>
+    <section class="card">
         <h3>Wettspiel beitreten</h3>
         <form method="POST">
             <label for="round_name">Name der Wettrunde:</label><br>
@@ -20,14 +20,18 @@
         </form>
     </section>
 
-    <section>
+    <section class="card">
         <h3>Meine Wettspiele</h3>
         <ul>
-            <li><a href="/tippspiel" class="button"> test</a></li>
+           {% for round in rounds %}
+                <li>
+                    <a href="/tippspiel/{{ round['id'] }}" class="button">{{ round["name"] }}</a>
+                </li>
+            {%endfor%}
         </ul>
     </section>
 
-    <section>
+    <section class="card">
         <h3>Logout</h3>
         <p><a href="/login" class="button">Abmelden</a></p>
         

@@ -3,27 +3,27 @@
 {% block title %}Tippspiel{% endblock %}
 
 {% block content %}
-    <h2>Tipprunde</h2>
+    <h2 class="card">Tipprunde</h2>
 
-    <section>
+    <section class="card">
         <h3>Informationen</h3>
-        <p>Name der Tipprunde</p>
-        <p>Beschreibung der Tipprunde</p>
+        <p><strong>Name:</strong> {{ round["name"] }}</p>
+        <p><strong>Beschreibung:</strong> {{ round["description"] }}</p>
     </section>
 
-    <section>
+    <section class="card">
         <h3>Teilnehmende</h3>
         <ul>
             <li>Keine Teilnehmenden vorhanden.</li>
         </ul>
     </section>
 
-    <section>
+    <section class="card">
         <h3>Spiele und Tipps</h3>
         <p>Deine Spiele und Tipps:</p>
     </section>
 
-    <section>
+    <section class="card">
         <h3>Rangliste</h3>
         <p>Rangliste der Teilnehmenden:</p>
     </section>
@@ -32,7 +32,7 @@
        
     </section>
 
-    <section>
+    <section class="card">
         <h3>Aktionen</h3>
         <form method="POST" action="/leave-round">
             <button type="submit" class="button">Tipprunde verlassen</button>

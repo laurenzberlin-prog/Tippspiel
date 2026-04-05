@@ -3,9 +3,9 @@
 {% block title %}Tipprunde erstellen{% endblock %}
 
 {% block content %}
-    <h2>Neue Tipprunde erstellen</h2>
+    <h2 class="card">Neue Tipprunde erstellen</h2>
 
-    <form method="POST">
+    <form class="card" method="POST">
         <label for="round_name">Name der Tipprunde:</label><br>
         <input type="text" id="round_name" name="round_name" required><br><br>
 
@@ -13,7 +13,8 @@
         <textarea id="description" name="description"></textarea><br><br>
 
         <button type="submit" class="button">Erstellen</button>
-    </form>
 
     <p><a href="/dashboard" class="button">Zurück </a></p>
+        </form>
+
 {% endblock %}
