@@ -84,6 +84,20 @@ def get_all_rounds():
     conn.close()
     return rounds
 
+def get_rounds_by_user_id(user_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT rounds.*
+        FROM round_members
+        JOIN rounds ON round_members.round_id = rounds.id
+        WHERE round_members.user_id = ?
+    """, (user_id,))
+    
+    rounds = cursor.fetchall()
+    conn.close()
+    return rounds
+
 def get_round_by_id(round_id):
     conn = get_connection()
     cursor = conn.cursor()
@@ -97,6 +111,16 @@ def add_user_to_round(user_id, round_id):
     cursor = conn.cursor()
     cursor.execute(
         "INSERT INTO round_members (user_id, round_id) VALUES (?, ?)",
+        (user_id, round_id)
+    )
+    conn.commit()
+    conn.close()
+
+def remove_user_from_round(user_id, round_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "DELETE FROM round_members WHERE user_id = ? AND round_id = ?",
         (user_id, round_id)
     )
     conn.commit()

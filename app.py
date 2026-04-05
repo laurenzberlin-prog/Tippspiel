@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session
-from database import init_db, create_user, get_user_by_username, create_round, get_all_rounds, get_round_by_id, add_user_to_round, get_users_by_round_id
+from database import init_db, create_user, get_user_by_username, create_round, get_all_rounds, get_round_by_id, add_user_to_round, get_users_by_round_id, remove_user_from_round, get_rounds_by_user_id
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 init_db()
@@ -36,7 +36,8 @@ def register():
 
 @app.route("/dashboard")
 def dashboard():
-    rounds = get_all_rounds()
+    user_id = session["user_id"]
+    rounds = get_rounds_by_user_id(user_id)
     return render_template("dashboard.html", rounds=rounds)
 
 @app.route("/create-round")
@@ -60,6 +61,12 @@ def create_round_page():
         add_user_to_round(session["user_id"], new_round["id"])
         return redirect("/dashboard")
     return render_template("create-round.html")
+
+@app.route("/leave-round/<int:round_id>", methods=["POST"])
+def leave_round(round_id):
+    user_id = session.get("user_id")
+    remove_user_from_round(user_id, round_id)
+    return redirect("/dashboard")
 
 if __name__ == "__main__":
     app.run(debug=True)
