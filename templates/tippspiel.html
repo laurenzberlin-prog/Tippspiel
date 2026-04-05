@@ -14,7 +14,9 @@
     <section class="card">
         <h3>Teilnehmende</h3>
         <ul>
-            <li>Keine Teilnehmenden vorhanden.</li>
+           {% for user in users%}
+                <li>{{ user["username"] }}</li>
+           {% endfor %}
         </ul>
     </section>
 

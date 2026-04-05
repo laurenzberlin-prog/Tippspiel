@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request, redirect
-from database import init_db, create_user, get_user_by_username, create_round, get_all_rounds, get_round_by_id
-
+from flask import Flask, render_template, request, redirect, session
+from database import init_db, create_user, get_user_by_username, create_round, get_all_rounds, get_round_by_id, add_user_to_round, get_users_by_round_id
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 init_db()
@@ -18,6 +17,7 @@ def login():
         password = request.form["password"]
         user = get_user_by_username(username)
         if user and user["password"] == password:
+            session["user_id"] = user["id"]
             return redirect("/dashboard")
         else:
             return render_template("login.html", error="Falscher Nutzername oder falsches Passwort. Bitte überprüfe die Eingabe!")
@@ -46,7 +46,8 @@ def create_round_form():
 @app.route("/tippspiel/<int:round_id>")
 def tippspiel(round_id):
     round = get_round_by_id(round_id)
-    return render_template("tippspiel.html", round=round)
+    users = get_users_by_round_id(round_id)
+    return render_template("tippspiel.html", round=round, users=users)
 
 @app.route("/create-round", methods=["GET","POST"])
 def create_round_page():
@@ -54,6 +55,9 @@ def create_round_page():
         name = request.form["round_name"]
         description = request.form["description"]
         create_round(name, description)
+        rounds = get_all_rounds()
+        new_round = rounds[-1]
+        add_user_to_round(session["user_id"], new_round["id"])
         return redirect("/dashboard")
     return render_template("create-round.html")
 

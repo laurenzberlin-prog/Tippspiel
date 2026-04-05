@@ -27,6 +27,13 @@ def init_db():
                    )
     """)
 
+    cursor.execute("""
+            CREATE TABLE IF NOT EXISTS round_members (
+                   id INTEGER PRIMARY KEY AUTOINCREMENT,
+                   user_id INTEGER NOT NULL,
+                   round_id INTEGER NOT NULL
+                   )
+    """)
     conn.commit()
     conn.close()
 
@@ -84,4 +91,26 @@ def get_round_by_id(round_id):
     round = cursor.fetchone()
     conn.close()
     return round
+
+def add_user_to_round(user_id, round_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "INSERT INTO round_members (user_id, round_id) VALUES (?, ?)",
+        (user_id, round_id)
+    )
+    conn.commit()
+    conn.close()
     
+def get_users_by_round_id(round_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT users.username
+        FROM round_members
+        JOIN users ON round_members.user_id = users.id
+        WHERE round_members.round_id = ?
+    """, (round_id,))
+    users = cursor.fetchall()
+    conn.close()
+    return users

@@ -1,5 +1,23 @@
 body {
-    background-color: #f5f5f5;
+    background-color: #ffffffc1;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+main {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+}
+.card{
+    background-color: rgb(241, 240, 240);
+    padding: 20px;
+    margin-bottom:20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.card h3 {
+    margin-top: 0;
 }
 
 .button {
