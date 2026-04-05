@@ -106,6 +106,15 @@ def get_round_by_id(round_id):
     conn.close()
     return round
 
+def get_round_by_name(name):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM rounds WHERE name = ?", 
+    (name,))
+    round_data = cursor.fetchone()
+    conn.close()
+    return round_data
+
 def add_user_to_round(user_id, round_id):
     conn = get_connection()
     cursor = conn.cursor()
