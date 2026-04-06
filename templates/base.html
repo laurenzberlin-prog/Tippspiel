@@ -11,14 +11,11 @@
 <body>
     <header>
         <h1>Tippspiel</h1>
-        {% if request.endpoint not in ['login', 'home'] %}
-         
-    
-        {% endif %}
     </header>
 
     <main>
         {% block content %}{% endblock %}
     </main>
+
 </body>
 </html>
