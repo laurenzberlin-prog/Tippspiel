@@ -11,6 +11,25 @@
         <p><strong>Beschreibung:</strong> {{ round["description"] }}</p>
     </section>
 
+    {% if is_creator %}
+    <section class="card">
+        <h3>Spiel hinzufügen</h3>
+
+        <form method="POST" action="/add-match/{{ round ['id'] }}">
+            <label for="match_date">Datum:</label><br>
+            <input type="text" id="match_date" name="match_date" placeholder="z.B. 06.04.2026" required><br><br>
+
+            <label for="home_team"> Heimmannschaft:</label><br>
+            <input type="text" id="home_team" name="home_team" required><br><br>
+
+             <label for="away_team"> Auswärtsmannschaft:</label><br>
+            <input type="text" id="away_team" name="away_team" required><br><br>
+
+            <button type="submit" class="button">Spiel hinzufügen</button>
+        </form>
+    </section>
+    {% endif %}
+
     <section class="card">
         <h3>Teilnehmende</h3>
         <ul>
@@ -22,6 +41,15 @@
 
     <section class="card">
         <h3>Spiele und Tipps</h3>
+
+        <ul>
+            {% for match in matches %}
+                <li>
+                  {{ match["match_date"] }}:
+                  {{ match ["home_team"] }} vs {{ match ["away_team"] }}
+                </li>
+            {% endfor %}
+
         <p>Deine Spiele und Tipps:</p>
     </section>
 

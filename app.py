@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session
-from database import init_db, create_user, get_user_by_username, create_round, get_all_rounds, get_round_by_id, add_user_to_round, get_users_by_round_id, remove_user_from_round, get_rounds_by_user_id, get_round_by_name
+from database import init_db, create_user, get_user_by_username, create_round, get_all_rounds, get_round_by_id, add_user_to_round, get_users_by_round_id, remove_user_from_round, get_rounds_by_user_id, get_round_by_name, create_match, get_matches_by_round_id
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 init_db()
@@ -53,19 +53,32 @@ def create_round_form():
 def tippspiel(round_id):
     round = get_round_by_id(round_id)
     users = get_users_by_round_id(round_id)
-    return render_template("tippspiel.html", round=round, users=users)
+    matches = get_matches_by_round_id(round_id)
+
+    is_creator = session["user_id"] == round["creator_user_id"]
+    return render_template("tippspiel.html", round=round, users=users, matches=matches, is_creator=is_creator)
 
 @app.route("/create-round", methods=["GET","POST"])
 def create_round_page():
     if request.method == "POST":
         name = request.form["round_name"]
         description = request.form["description"]
-        create_round(name, description)
+        
+        create_round(name, description, session["user_id"])
         rounds = get_all_rounds()
         new_round = rounds[-1]
         add_user_to_round(session["user_id"], new_round["id"])
         return redirect("/dashboard")
     return render_template("create-round.html")
+
+@app.route("/add-match/<int:round_id>", methods=["POST"])
+def add_match(round_id):
+    match_date = request.form["match_date"]
+    home_team = request.form["home_team"]
+    away_team = request.form["away_team"]
+
+    create_match(round_id, match_date, home_team, away_team)
+    return redirect(f"/tippspiel/{round_id}")
 
 @app.route("/leave-round/<int:round_id>", methods=["POST"])
 def leave_round(round_id):

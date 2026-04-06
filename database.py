@@ -20,19 +20,30 @@ def init_db():
     """)
 
     cursor.execute("""
-                   CREATE TABLE IF NOT EXISTS rounds (
-                       id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        name TEXT NOT NULL,
-                        description TEXT
-                   )
+        CREATE TABLE IF NOT EXISTS rounds (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            description TEXT,
+            creator_user_id INTEGER NOT NULL
+        )
     """)
 
     cursor.execute("""
-            CREATE TABLE IF NOT EXISTS round_members (
-                   id INTEGER PRIMARY KEY AUTOINCREMENT,
-                   user_id INTEGER NOT NULL,
-                   round_id INTEGER NOT NULL
-                   )
+        CREATE TABLE IF NOT EXISTS matches (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            round_id INTEGER NOT NULL,
+            match_date TEXT,
+            home_team TEXT NOT NULL,
+            away_team TEXT NOT NULL
+        )
+    """)
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS round_members (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            round_id INTEGER NOT NULL
+        )
     """)
     conn.commit()
     conn.close()
@@ -64,13 +75,13 @@ def get_user_by_username(username):
     conn.close()
     return user
 
-def create_round(name, description):
+def create_round(name, description, creator_user_id):
     conn = get_connection()
     cursor = conn.cursor()
     
     cursor.execute(
-        "INSERT INTO rounds (name, description) VALUES (?, ?)",
-        (name, description)
+        "INSERT INTO rounds (name, description, creator_user_id) VALUES (?, ?, ?)",
+        (name, description, creator_user_id)
     )
     conn.commit()
     conn.close()
@@ -98,6 +109,28 @@ def get_rounds_by_user_id(user_id):
     conn.close()
     return rounds
 
+def create_match(round_id, match_date, home_team, away_team):
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute(
+        "INSERT INTO matches (round_id, match_date, home_team, away_team) VALUES (?, ?, ?, ?)",
+        (round_id, match_date, home_team, away_team)
+    )
+    conn.commit()
+    conn.close()
+
+def get_matches_by_round_id(round_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute(
+        "SELECT * FROM matches WHERE round_id = ? ORDER BY match_date ASC",
+        (round_id,)
+    )
+    matches = cursor.fetchall()
+    conn.close()
+    return matches
 def get_round_by_id(round_id):
     conn = get_connection()
     cursor = conn.cursor()
