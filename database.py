@@ -42,7 +42,8 @@ def init_db():
         CREATE TABLE IF NOT EXISTS round_members (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER NOT NULL,
-            round_id INTEGER NOT NULL
+            round_id INTEGER NOT NULL,
+            UNIQUE(user_id, round_id)
         )
     """)
     conn.commit()

@@ -67,12 +67,17 @@ def create_round_page():
     if request.method == "POST":
         name = request.form["round_name"]
         description = request.form["description"]
-        
-        create_round(name, description, session["user_id"])
-        rounds = get_all_rounds()
-        new_round = rounds[-1]
-        add_user_to_round(session["user_id"], new_round["id"])
-        return redirect("/dashboard")
+
+        success = create_round(name, description, session["user_id"])
+
+        if success:
+            rounds = get_all_rounds()
+            new_round = rounds[-1]
+            add_user_to_round(session["user_id"], new_round["id"])
+            return redirect("/dashboard")
+        else:
+            return render_template("create-round.html", error="Eine Tipprunde mit diesem Namen existiert bereits.")
+
     return render_template("create-round.html")
 
 @app.route("/add-match/<int:round_id>", methods=["POST"])

@@ -6,6 +6,10 @@
 <section class="card">
     <h2> Neue Tipprunde erstellen</h2>
 
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+
     <form  method="POST">
         <label for="round_name">Name der Tipprunde:</label><br>
         <input type="text" id="round_name" name="round_name" placeholder="z.B. Büro-Wettrunde"required><br><br>
