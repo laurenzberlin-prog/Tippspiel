@@ -26,8 +26,12 @@ def register():
     if request.method =="POST":
         username = request.form["username"]
         password = request.form["password"]
-        create_user(username, password)
-        return redirect("/login")
+        
+        success = create_user(username, password)
+        if success:
+            return redirect("/login")
+        else:
+            return render_template("register.html", error="Der Nutzername ist bereits vergeben. Bitte wähle einen anderen Namen!")
     return render_template("register.html")
 
 @app.route("/dashboard", methods=["GET", "POST"])

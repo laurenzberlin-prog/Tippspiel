@@ -22,7 +22,7 @@ def init_db():
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS rounds (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
+            name TEXT NOT NULL UNIQUE,
             description TEXT,
             creator_user_id INTEGER NOT NULL
         )
@@ -79,12 +79,17 @@ def create_round(name, description, creator_user_id):
     conn = get_connection()
     cursor = conn.cursor()
     
-    cursor.execute(
-        "INSERT INTO rounds (name, description, creator_user_id) VALUES (?, ?, ?)",
-        (name, description, creator_user_id)
-    )
-    conn.commit()
-    conn.close()
+    try:
+        cursor.execute(
+            "INSERT INTO rounds (name, description, creator_user_id) VALUES (?, ?, ?)",
+            (name, description, creator_user_id)
+        )
+        conn.commit()
+        return True
+    except sqlite3.IntegrityError:
+        return False
+    finally:        
+        conn.close()
 
 
 def get_all_rounds():
@@ -131,6 +136,7 @@ def get_matches_by_round_id(round_id):
     matches = cursor.fetchall()
     conn.close()
     return matches
+
 def get_round_by_id(round_id):
     conn = get_connection()
     cursor = conn.cursor()

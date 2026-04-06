@@ -34,3 +34,7 @@ main {
 .button:hover {
     background-color: #444547;
 }
+.small-text {
+    font-size: 14px; /* oder z.B. 0.8em */
+    font-weight: normal;
+}

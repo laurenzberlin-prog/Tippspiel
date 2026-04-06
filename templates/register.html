@@ -3,8 +3,13 @@
 {% block title %}Registrieren{% endblock %}
 
 {% block content %}
-    <h2 class="card">Registrieren- Bitte wähle einen Namen und ein Passwort</h2>
+    <h2 class="card">Registrieren- <br><span class="small-text">Bitte wähle einen Namen und ein Passwort um ein neues Konto zu erstellen.</span></h2>
 
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    
     <form class="card" method="POST">
         <label>Name:</label><br>
         <input type="text" name="username" required><br><br>
