@@ -4,11 +4,9 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 init_db()
 
-
 @app.route("/")
 def home():
     return redirect("login")
-
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -23,7 +21,6 @@ def login():
             return render_template("login.html", error="Falscher Nutzername oder falsches Passwort. Bitte überprüfe die Eingabe!")
     return render_template("login.html")
 
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method =="POST":
@@ -32,7 +29,6 @@ def register():
         create_user(username, password)
         return redirect("/login")
     return render_template("register.html")
-
 
 @app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
