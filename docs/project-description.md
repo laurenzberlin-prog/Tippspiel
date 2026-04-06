@@ -12,6 +12,7 @@ Die Anwendung soll Arbeitskolleg:innen dabei unterstützen Tippspiele für anste
 
 -   Registrierung und Login für jeden Nutzenden
 -   Erstellen, Durchführen und Verwalten von Tippspielen
+-   Beitritt zu bestehenden Tipprunden
 -   Tippabgabe zu Ergebnissen
 -   Erfassen von Ergebnissen
 -   Ranglistenanzeige, verknüpft mit bisherigen Tipps
