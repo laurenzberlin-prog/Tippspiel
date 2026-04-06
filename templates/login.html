@@ -4,23 +4,23 @@
 {% block content %}
 
 <section class="card">
-    </h2> <span class="strong-text">Login</span></h2>
+    <h2>Login<br><span class="small-text">Bitte gib deine Daten ein, um die anzumelden.</span></h2>
     
     {% if error %}
     <p style="color: red;">{{ error }}</p>
     {% endif %}
 
     <form  method="POST" action="/login">
-        <label><br>Name:</label><br>
-        <input type="text" name="username" required><br><br>
+        <label>Name:</label><br>
+        <input type="text" name="username" placeholder="***********"required><br><br>
 
         <label>Passwort:</label><br>
-        <input type="password" name="password" required><br><br>
+        <input type="password" name="password" placeholder="***********"required><br><br>
 
         <button type="submit" class="button">Einloggen</button>
     
 
-        <p>Noch keinen Account?<br>  
+        <p>Noch keinen Account?</p>  
         <a href="/register" class="button">Registrieren</a></p>
     </form>
 </section>

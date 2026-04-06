@@ -5,7 +5,7 @@
 {% block content %}
 
 <section class="card">
-    <h2 >Registrieren- <br><span class="small-text">Bitte wähle einen Namen und ein Passwort um ein neues Konto zu erstellen.</span></h2>
+    <h2>Registrieren<br><span class="small-text">Bitte wähle einen Namen und ein Passwort um ein neues Konto zu erstellen.</span></h2>
 
 
     {% if error %}
@@ -14,10 +14,10 @@
     
     <form  method="POST">
         <label>Name:</label><br>
-        <input type="text" name="username" required><br><br>
+        <input type="text" name="username" placeholder="z.B. Max Mustermann"required><br><br>
 
         <label>Passwort:</label><br>
-        <input type="password" name="password" required><br><br>
+        <input type="password" name="password" placeholder="***********"required><br><br>
 
         <button type="submit" class="button">Registrieren</button>
 
