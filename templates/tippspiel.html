@@ -3,16 +3,17 @@
 {% block title %}Tippspiel{% endblock %}
 
 {% block content %}
-    <h2 class="card">Tipprunde</h2>
+<section class="card">
+    <h2>Tipprunde</h2>
 
-    <section class="card">
         <h3>Informationen</h3>
         <p><strong>Name:</strong> {{ round["name"] }}</p>
         <p><strong>Beschreibung:</strong> {{ round["description"] }}</p>
-    </section>
 
     {% if is_creator %}
-    <section class="card">
+</section>
+
+<section class="card">
         <h3>Spiel hinzufügen</h3>
 
         <form method="POST" action="/add-match/{{ round ['id'] }}">
@@ -27,21 +28,20 @@
 
             <button type="submit" class="button">Spiel hinzufügen</button>
         </form>
-    </section>
     {% endif %}
+</section>
 
-    <section class="card">
+<section class="card">
         <h3>Teilnehmende</h3>
         <ul>
            {% for user in users%}
                 <li>{{ user["username"] }}</li>
            {% endfor %}
         </ul>
-    </section>
+</section>
 
-    <section class="card">
+ <section class="card">
         <h3>Spiele und Tipps</h3>
-
         <ul>
             {% for match in matches %}
                 <li>
@@ -49,25 +49,21 @@
                   {{ match ["home_team"] }} vs {{ match ["away_team"] }}
                 </li>
             {% endfor %}
-
+        </ul>
         <p>Deine Spiele und Tipps:</p>
-    </section>
+ </section>
 
-    <section class="card">
-        <h3>Rangliste</h3>
-        <p>Rangliste der Teilnehmenden:</p>
-    </section>
+ <section class="card">
+    <h3>Rangliste</h3>
+    <p>Rangliste der Teilnehmenden:</p>
+</section>
 
-    <section>
-       
-    </section>
-
-    <section class="card">
+<section class="card">
         <h3>Aktionen</h3>
         <form method="POST" action="/leave-round/{{ round['id'] }}">
             <button type="submit" class="button">Tipprunde verlassen</button>
         </form>
 
         <p><a href="/dashboard" class="button">Zurück zum Dashboard</a></p>
-    </section>
+</section>
 {% endblock %}

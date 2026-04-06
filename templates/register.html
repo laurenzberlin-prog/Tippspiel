@@ -3,14 +3,16 @@
 {% block title %}Registrieren{% endblock %}
 
 {% block content %}
-    <h2 class="card">Registrieren- <br><span class="small-text">Bitte wähle einen Namen und ein Passwort um ein neues Konto zu erstellen.</span></h2>
+
+<section class="card">
+    <h2 >Registrieren- <br><span class="small-text">Bitte wähle einen Namen und ein Passwort um ein neues Konto zu erstellen.</span></h2>
 
 
     {% if error %}
         <p style="color: red;">{{ error }}</p>
     {% endif %}
     
-    <form class="card" method="POST">
+    <form  method="POST">
         <label>Name:</label><br>
         <input type="text" name="username" required><br><br>
 
@@ -23,4 +25,5 @@
     <p><a href="/login" class="button">Zum Login</a></p>
 
     </form>
+</section>
 {% endblock %}
