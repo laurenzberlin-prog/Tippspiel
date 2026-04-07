@@ -102,6 +102,11 @@ def delete_match_route(match_id, round_id):
 @app.route("/save-prediction/<int:round_id>/<int:match_id>", methods=["POST"])
 def save_prediction_route(round_id, match_id):
     user_id = session["user_id"]
+
+    existing_prediction = get_prediction_by_user_and_match(user_id, match_id)
+    if existing_prediction:
+        return redirect(f"/tippspiel/{round_id}")
+
     predicted_home_score = request.form["predicted_home_score"]
     predicted_away_score = request.form["predicted_away_score"]
 
