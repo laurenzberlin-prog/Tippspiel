@@ -37,7 +37,13 @@
             {% for match in matches %}
                 <li>
                   {{ match["match_date"] }}:
-                  {{ match ["home_team"] }} vs {{ match ["away_team"] }}
+                  {{ match ["home_team"] }} vs {{ match ["away_team"]}}
+
+                  {% if is_creator %}
+                    <form method="POST" action="/delete-match/{{ match['id'] }}/{{ round['id'] }}" style="display:inline;">
+                        <button type="submit" class="button">Spiel löschen</button>
+                    </form>
+                  {% endif %}
                 </li>
             {% endfor %}
         </ul>

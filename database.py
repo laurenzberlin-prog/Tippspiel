@@ -126,6 +126,17 @@ def create_match(round_id, match_date, home_team, away_team):
     conn.commit()
     conn.close()
 
+def delete_match(match_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "DELETE FROM matches WHERE id = ?",
+        (match_id,)
+    )
+    conn.commit()
+    conn.close()
+
 def get_matches_by_round_id(round_id):
     conn = get_connection()
     cursor = conn.cursor()
