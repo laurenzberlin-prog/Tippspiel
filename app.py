@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session
-from database import init_db, create_user, get_user_by_username, create_round, get_all_rounds, get_round_by_id, add_user_to_round, get_users_by_round_id, remove_user_from_round, get_rounds_by_user_id, get_round_by_name, create_match, get_matches_by_round_id, delete_match
+from database import init_db, create_user, get_user_by_username, create_round, get_all_rounds, get_round_by_id, add_user_to_round, get_users_by_round_id, remove_user_from_round, get_rounds_by_user_id, get_round_by_name, create_match, get_matches_by_round_id, delete_match, save_prediction, get_prediction_by_user_and_match
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 init_db()
@@ -59,8 +59,10 @@ def tippspiel(round_id):
     users = get_users_by_round_id(round_id)
     matches = get_matches_by_round_id(round_id)
 
-    is_creator = session["user_id"] == round["creator_user_id"]
-    return render_template("tippspiel.html", round=round, users=users, matches=matches, is_creator=is_creator)
+    current_user_id = session ["user_id"]
+    is_creator = current_user_id == round["creator_user_id"]
+
+    return render_template("tippspiel.html", round=round, users=users, matches=matches, is_creator=is_creator, current_user_id=current_user_id, get_prediction_by_user_and_match=get_prediction_by_user_and_match)
 
 @app.route("/create-round", methods=["GET","POST"])
 def create_round_page():
@@ -95,6 +97,15 @@ def delete_match_route(match_id, round_id):
     if session["user_id"] != round_data["creator_user_id"]:
         return redirect(f"/tippspiel/{round_id}")
     delete_match(match_id)
+    return redirect(f"/tippspiel/{round_id}")
+
+@app.route("/save-prediction/<int:round_id>/<int:match_id>", methods=["POST"])
+def save_prediction_route(round_id, match_id):
+    user_id = session["user_id"]
+    predicted_home_score = request.form["predicted_home_score"]
+    predicted_away_score = request.form["predicted_away_score"]
+
+    save_prediction(user_id, match_id, predicted_home_score, predicted_away_score)
     return redirect(f"/tippspiel/{round_id}")
 
 @app.route("/leave-round/<int:round_id>", methods=["POST"])

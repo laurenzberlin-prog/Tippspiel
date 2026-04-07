@@ -46,6 +46,17 @@ def init_db():
             UNIQUE(user_id, round_id)
         )
     """)
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS predictions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            match_id INTEGER NOT NULL,
+            predicted_home_score INTEGER NOT NULL,
+            predicted_away_score INTEGER NOT NULL,
+            UNIQUE(user_id, match_id)
+        )
+""")
     conn.commit()
     conn.close()
 
@@ -148,6 +159,34 @@ def get_matches_by_round_id(round_id):
     matches = cursor.fetchall()
     conn.close()
     return matches
+
+def save_prediction(user_id, match_id, predicted_home_score, predicted_away_score):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        """
+        INSERT OR REPLACE INTO predictions
+        (user_id, match_id, predicted_home_score, predicted_away_score)
+        VALUES (?, ?, ?, ?)
+        """,
+        (user_id, match_id, predicted_home_score, predicted_away_score)
+    )
+    conn.commit()
+    conn.close()
+
+def get_prediction_by_user_and_match(user_id, match_id):
+    conn = get_connection ()
+    cursor = conn.cursor()
+    cursor.execute(
+        """
+        SELECT * FROM predictions
+        WHERE user_id = ? AND match_id = ?
+        """,
+        (user_id, match_id)
+    )
+    prediction = cursor.fetchone()
+    conn.close()
+    return prediction
 
 def get_round_by_id(round_id):
     conn = get_connection()

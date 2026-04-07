@@ -32,22 +32,33 @@
 </section>
 
  <section class="card">
-        <h3>Spiele und Tipps</h3>
-        <ul>
-            {% for match in matches %}
-                <li>
-                  {{ match["match_date"] }}:
-                  {{ match ["home_team"] }} vs {{ match ["away_team"]}}
+    <h3>Spiele und Tipps</h3>
+    <ul>
+        {% for match in matches %}
+            <li>
+                {{ match["match_date"] }}:
+                {{ match["home_team"] }} vs {{ match["away_team"] }}
 
-                  {% if is_creator %}
-                    <form method="POST" action="/delete-match/{{ match['id'] }}/{{ round['id'] }}" style="display:inline;">
+                {% if is_creator %}
+                    <form method="POST" action="/delete-match/{{ match['id'] }}/{{ round['id'] }}" style="display: inline;">
                         <button type="submit" class="button">Spiel löschen</button>
                     </form>
-                  {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
- </section>
+                {% endif %}
+
+                <form method="POST" action="/save-prediction/{{ round['id'] }}/{{ match['id'] }}">
+                    <input type="number" name="predicted_home_score" placeholder="Heim" required style="width: 70px;">
+                    <input type="number" name="predicted_away_score" placeholder="Auswärts" required style="width: 70px;">
+                    <button type="submit" class="button">Tipp speichern</button>
+                </form>
+                {% set prediction = get_prediction_by_user_and_match(current_user_id, match['id']) %}
+                {% if prediction %}
+                    <p>Dein Tipp: {{ prediction["predicted_home_score"] }} : {{ prediction["predicted_away_score"] }}</p>
+                {% endif %}
+
+            </li>
+        {% endfor %}
+    </ul>
+</section>
 
  <section class="card">
         <h3>Teilnehmende</h3>
