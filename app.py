@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session
-from database import init_db, create_user, get_user_by_username, create_round, get_all_rounds, get_round_by_id, add_user_to_round, get_users_by_round_id, remove_user_from_round, get_rounds_by_user_id, get_round_by_name, create_match, get_matches_by_round_id, delete_match, save_prediction, get_prediction_by_user_and_match
+from database import init_db, create_user, get_user_by_username, create_round, get_all_rounds, get_round_by_id, add_user_to_round, get_users_by_round_id, remove_user_from_round, get_rounds_by_user_id, get_round_by_name, create_match, get_matches_by_round_id, delete_match, save_prediction, get_prediction_by_user_and_match, get_predictions_by_round_id, save_match_result
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 init_db()
@@ -58,11 +58,19 @@ def tippspiel(round_id):
     round = get_round_by_id(round_id)
     users = get_users_by_round_id(round_id)
     matches = get_matches_by_round_id(round_id)
+    predictions = get_predictions_by_round_id(round_id)
 
     current_user_id = session ["user_id"]
     is_creator = current_user_id == round["creator_user_id"]
 
-    return render_template("tippspiel.html", round=round, users=users, matches=matches, is_creator=is_creator, current_user_id=current_user_id, get_prediction_by_user_and_match=get_prediction_by_user_and_match)
+    return render_template("tippspiel.html", 
+                           round=round, 
+                           users=users, 
+                           matches=matches, 
+                           predictions=predictions, 
+                           is_creator=is_creator, 
+                           current_user_id=current_user_id, 
+                           get_prediction_by_user_and_match=get_prediction_by_user_and_match)
 
 @app.route("/create-round", methods=["GET","POST"])
 def create_round_page():
@@ -89,6 +97,19 @@ def add_match(round_id):
     away_team = request.form["away_team"]
 
     create_match(round_id, match_date, home_team, away_team)
+    return redirect(f"/tippspiel/{round_id}")
+
+@app.route("/save-result/<int:round_id>/<int:match_id>", methods=["POST"])
+def save_match_result_route(round_id, match_id):
+    round_data = get_round_by_id(round_id)
+    
+    if session["user_id"] != round_data["creator_user_id"]:
+        return redirect(f"/tippspiel/{round_id}")
+
+    actual_home_score = request.form["actual_home_score"]
+    actual_away_score = request.form["actual_away_score"]
+
+    save_match_result(match_id, actual_home_score, actual_away_score)
     return redirect(f"/tippspiel/{round_id}")
 
 @app.route("/delete-match/<int:match_id>/<int:round_id>", methods=["POST"])

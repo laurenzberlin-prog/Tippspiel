@@ -34,7 +34,9 @@ def init_db():
             round_id INTEGER NOT NULL,
             match_date TEXT,
             home_team TEXT NOT NULL,
-            away_team TEXT NOT NULL
+            away_team TEXT NOT NULL,
+            actual_home_score INTEGER,
+            actual_away_score INTEGER
         )
     """)
 
@@ -133,6 +135,19 @@ def create_match(round_id, match_date, home_team, away_team):
     cursor.execute(
         "INSERT INTO matches (round_id, match_date, home_team, away_team) VALUES (?, ?, ?, ?)",
         (round_id, match_date, home_team, away_team)
+    )
+    conn.commit()
+    conn.close()
+
+def save_match_result(match_id, actual_home_score, actual_away_score):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        UPDATE matches
+        SET actual_home_score = ?, actual_away_score = ?
+        WHERE id = ?
+        """,
+        (actual_home_score, actual_away_score, match_id)
     )
     conn.commit()
     conn.close()
@@ -237,3 +252,18 @@ def get_users_by_round_id(round_id):
     users = cursor.fetchall()
     conn.close()
     return users
+
+def get_predictions_by_round_id(round_id):
+    conn = get_connection ()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT predictions.*, users.username
+        FROM predictions
+        JOIN matches ON predictions.match_id = matches.id
+        JOIN users ON predictions.user_id = users.id
+        WHERE matches.round_id = ?
+    """, (round_id,))
+    predictions = cursor.fetchall()
+    conn.close()
+    return predictions
