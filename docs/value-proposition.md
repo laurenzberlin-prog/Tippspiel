@@ -15,7 +15,16 @@ Hier kommt es jedoch oft zu organisatorischen Schwierigkeiten durch fehlende Üb
 
 ##  Lösung
 
-Die Anwendung Tippspiel bietet eine simple webbasierte Lösung, um gerade diese Probleme zu beheben und das schnelle und zuverlässige Durchführen von Tipprunden in einem Bekanntenkreis durchführen zu können.
+Die Anwendung Tippspiel bietet eine simple webbasierte Lösung, um gerade diese Probleme zu beheben und das schnelle und zuverlässige Durchführen von Tippspielen in einem Bekanntenkreis durchführen zu können. 
+
+Umgesetzte Funktionen der Anwendung sind:
+
+-   Registrierung und Login für jeden Nutzenden
+-   Erstellen, Durchführen und Verwalten von Tippspielen
+-   Beitritt zu bestehenden Tippspielen
+-   Tippabgabe zu Ergebnissen
+-   Erfassen von Ergebnissen
+-   Ranglistenanzeige, verknüpft mit bisherigen Tipps
 
 ##  Zielgruppe
 
