@@ -61,12 +61,6 @@ def dashboard():
     rounds = get_rounds_by_user_id(user_id)
     return render_template("dashboard.html", rounds=rounds)
 
-@app.route("/create-round")
-def create_round_form():
-    if "user_id" not in session:
-        return redirect("/login")
-    return render_template("create-round.html")
-
 @app.route("/tippspiel/<int:round_id>")
 def tippspiel(round_id):
     if "user_id" not in session:
@@ -140,6 +134,11 @@ def create_round_page():
 def add_match(round_id):
     if "user_id" not in session:
         return redirect("/login")
+    
+    round_data = get_round_by_id(round_id)
+    if session["user_id"] != round_data["creator_user_id"]:
+        return redirect(f"/tippspiel/{round_id}")
+    
     match_date = request.form["match_date"]
     home_team = request.form["home_team"]
     away_team = request.form["away_team"]
@@ -149,6 +148,9 @@ def add_match(round_id):
 
 @app.route("/save-result/<int:round_id>/<int:match_id>", methods=["POST"])
 def save_match_result_route(round_id, match_id):
+    if "user_id" not in session:
+        return redirect("/login")
+    
     round_data = get_round_by_id(round_id)
     
     if session["user_id"] != round_data["creator_user_id"]:
@@ -162,6 +164,9 @@ def save_match_result_route(round_id, match_id):
 
 @app.route("/delete-match/<int:match_id>/<int:round_id>", methods=["POST"])
 def delete_match_route(match_id, round_id):
+    if "user_id" not in session:
+        return redirect("/login")
+    
     round_data = get_round_by_id(round_id)
     if session["user_id"] != round_data["creator_user_id"]:
         return redirect(f"/tippspiel/{round_id}")
@@ -170,6 +175,9 @@ def delete_match_route(match_id, round_id):
 
 @app.route("/save-prediction/<int:round_id>/<int:match_id>", methods=["POST"])
 def save_prediction_route(round_id, match_id):
+    if "user_id" not in session:
+        return redirect("/login")
+
     user_id = session["user_id"]
 
     existing_prediction = get_prediction_by_user_and_match(user_id, match_id)
@@ -184,7 +192,10 @@ def save_prediction_route(round_id, match_id):
 
 @app.route("/leave-round/<int:round_id>", methods=["POST"])
 def leave_round(round_id):
-    user_id = session.get("user_id")
+    if "user_id" not in session:
+        return redirect("/login")
+    user_id = session["user_id"]
+    
     remove_user_from_round(user_id, round_id)
     return redirect("/dashboard")
 
