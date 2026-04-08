@@ -11,7 +11,12 @@ Hierbei wird beachtet, dass Kolleg:innen oft die Initiative ergreifen um ein Tip
 
 ## Übersicht
 
--   [Value Proposition] (value-proposition.html)
+-   [Value-Proposition] (value-proposition.html)
+-   [Architektur] (architecture.html)
+-   [Datenmodell] (data-model.html)
+-   [Referenz] (reference.html)
+-   [Design-Decisions] (design-decisions.html)
+-   [Quellen] (sources.html)
 ##  Problem
 
 
