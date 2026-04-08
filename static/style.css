@@ -43,3 +43,10 @@ main {
     font-size: 25px; 
     font-weight: bold;
 }
+.match-card {
+    border: 1px solid #bdb9b9;
+    border-radius: 8px;
+    padding: 8px 12px 8px 10px; 
+    margin-bottom: 16px;
+    background-color: #f9f9f9;
+}
