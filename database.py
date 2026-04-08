@@ -244,7 +244,7 @@ def get_users_by_round_id(round_id):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
-        SELECT users.username
+        SELECT users.id, users.username
         FROM round_members
         JOIN users ON round_members.user_id = users.id
         WHERE round_members.round_id = ?

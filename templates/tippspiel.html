@@ -94,12 +94,8 @@
  <section class="card">
     <h3>Rangliste</h3>
     <ul>
-        {% for prediction in predictions%}
-            <li>
-                {{ prediction["username"] }}:
-                {{ prediction ["predicted_home_score"] }} : 
-                {{ prediction ["predicted_away_score"] }} 
-            </li>
+        {% for username, points in ranking|dictsort(by='value', reverse=True)%}
+            <li>{{ username }}: {{ points }} Punkt(e)</li>
         {% endfor %}
     </ul>
 </section>

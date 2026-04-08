@@ -4,6 +4,15 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 init_db()
 
+def calculate_points(pred_home, pred_away, actual_home, actual_away):
+    if pred_home > pred_away and actual_home > actual_away:
+        return 1
+    if pred_home < pred_away and actual_home < actual_away:
+        return 1
+    if pred_home == pred_away and actual_home == actual_away:
+        return 1
+    return 0
+
 @app.route("/")
 def home():
     return redirect("login")
@@ -60,6 +69,33 @@ def tippspiel(round_id):
     matches = get_matches_by_round_id(round_id)
     predictions = get_predictions_by_round_id(round_id)
 
+    ranking = {}
+
+    for user in users:
+        ranking[user["username"]] = 0
+    
+    match_result = {}
+    for match in matches:
+        if match["actual_home_score"] is not None and match["actual_away_score"] is not None:
+            match_result[match["id"]] =(
+                match["actual_home_score"],
+                match["actual_away_score"]
+            )
+    for prediction in predictions:
+        match_id = prediction["match_id"]
+
+        if match_id in match_result:
+            actual_home, actual_away = match_result[match_id]
+
+            points = calculate_points(
+                prediction["predicted_home_score"],
+                prediction["predicted_away_score"],
+                actual_home,
+                actual_away
+            )
+            user = next((u for u in users if u["id"] == prediction["user_id"]), None)
+            if user:
+                ranking[user["username"]] += points
     current_user_id = session ["user_id"]
     is_creator = current_user_id == round["creator_user_id"]
 
@@ -68,6 +104,7 @@ def tippspiel(round_id):
                            users=users, 
                            matches=matches, 
                            predictions=predictions, 
+                           ranking=ranking,
                            is_creator=is_creator, 
                            current_user_id=current_user_id, 
                            get_prediction_by_user_and_match=get_prediction_by_user_and_match)
