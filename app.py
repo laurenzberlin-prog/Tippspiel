@@ -32,6 +32,8 @@ def login():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if "user_id" not in session:
+        return redirect("/login")
     if request.method =="POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -45,6 +47,8 @@ def register():
 
 @app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
+    if "user_id" not in session:
+        return redirect("/login")
     user_id = session["user_id"]
 
     if request.method == "POST":
@@ -60,10 +64,14 @@ def dashboard():
 
 @app.route("/create-round")
 def create_round_form():
+    if "user_id" not in session:
+        return redirect("/login")
     return render_template("create-round.html")
 
 @app.route("/tippspiel/<int:round_id>")
 def tippspiel(round_id):
+    if "user_id" not in session:
+        return redirect("/login")
     round = get_round_by_id(round_id)
     users = get_users_by_round_id(round_id)
     matches = get_matches_by_round_id(round_id)
@@ -111,6 +119,8 @@ def tippspiel(round_id):
 
 @app.route("/create-round", methods=["GET","POST"])
 def create_round_page():
+    if "user_id" not in session:
+        return redirect("/login")
     if request.method == "POST":
         name = request.form["round_name"]
         description = request.form["description"]
@@ -129,6 +139,8 @@ def create_round_page():
 
 @app.route("/add-match/<int:round_id>", methods=["POST"])
 def add_match(round_id):
+    if "user_id" not in session:
+        return redirect("/login")
     match_date = request.form["match_date"]
     home_team = request.form["home_team"]
     away_team = request.form["away_team"]
@@ -176,6 +188,10 @@ def leave_round(round_id):
     user_id = session.get("user_id")
     remove_user_from_round(user_id, round_id)
     return redirect("/dashboard")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
 
 if __name__ == "__main__":
     app.run(debug=True)
