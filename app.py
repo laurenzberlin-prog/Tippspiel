@@ -192,5 +192,10 @@ def leave_round(round_id):
 def page_not_found(e):
     return render_template("404.html"), 404
 
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/login")
+
 if __name__ == "__main__":
     app.run(debug=True)
