@@ -43,21 +43,20 @@
                             </form>
                     {% endif %}
                 </div>
-
-                {% if is_creator %}
+                
                     {% if match["actual_home_score"] is not none and match["actual_away_score"] is not none %}
                         <p>
-                            Tatsächliches Ergebnis:
+                            <strong>Tatsächliches Ergebnis:</strong>
                             {{ match["actual_home_score"] }} : {{ match["actual_away_score"] }}
                         </p>
-                        {% else %}
+                        {% elif is_creator %}
                             <form method="POST" action="/save-result/{{ round['id'] }}/{{ match['id'] }}">
                                 <input type="number" name="actual_home_score" placeholder="Heim" required style="width: 70px;">
                                 <input type="number" name="actual_away_score" placeholder="Auswärts" required style="width: 70px;">
                                 <button type="submit" class="button">Ergebnis speichern</button>
                             </form>
                     {% endif %}
-                {% endif %}
+               
               
                 {% set prediction = get_prediction_by_user_and_match(current_user_id, match['id']) %}
                 {% if prediction %}
