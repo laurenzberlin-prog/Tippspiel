@@ -6,22 +6,22 @@
     
 
     <section class="card">
-        <h3>Neues Wettspiel</h3>
-        <p>Erstelle eine neue Wettrunde.</p>
+        <h3>Neues Tippspiel</h3>
+        <p>Erstelle ein neues Tippspiel.</p>
         <p><a href="/create-round" class="button">Neues Tippspiel erstellen</a></p>
     </section>
 
     <section class="card">
-        <h3>Wettspiel beitreten</h3>
+        <h3>Tippspiel beitreten</h3>
         <form method="POST">
-            <label for="round_name">Name der Wettrunde:</label><br>
-            <input type="text" id="round_name" name="round_name" placeholder="z.B. Büro-Wettrunde" required><br><br>
+            <label for="round_name">Name des Tippspiels:</label><br>
+            <input type="text" id="round_name" name="round_name" placeholder="z.B. Büro-Tippspiel" required><br><br>
             <button type="submit" class="button">Beitreten</button>
         </form>
     </section>
 
     <section class="card">
-        <h3>Meine Wettspiele</h3>
+        <h3>Meine Tippspiele</h3>
         <ul>
            {% for round in rounds %}
                 <li>

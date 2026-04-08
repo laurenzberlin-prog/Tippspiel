@@ -4,12 +4,17 @@ Projekt für die Design Challenge E "Tippspiel".
 
 ##  Zielsetzung
 
-Das Projekt Tippspiel widmet sich der Aufgabe Kolleg:innen dabei zu unterstützen, Tippspiele für Events wie bspw. Fußballturniere einfach zu organisieren, aufzusetzen und durchzuführen.
+Das Projekt Tippspiel widmet sich der Aufgabe Kolleg:innen dabei zu unterstützen, Tippspiele für Events wie bspw. Fußballturniere einfach zu organisieren, aufzusetzen und durchzuführen. 
 
+Hierbei wird beachtet, dass Kolleg:innen oft die Initiative ergreifen um ein Tippspiel aufzusetzen und dass dieses ein Gesprächsthema ist, wodurch es keiner digitalen Erinnerung bedarf. 
+
+
+## Übersicht
+
+-   [Value Proposition] (value-proposition.html)
 ##  Problem
 
--   Tippspiele werden häufig unübersichtlich und chaotisch über Nachrichtendienste wie Whatsapp etc. oder auf Papier geführt
--   Zentrale Übersichten zu Ergebnissen und Ranglisten fehlen
+
 
 ##  Lösung
 

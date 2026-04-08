@@ -4,8 +4,7 @@
 
 {% block content %}
 <section class="card">
-    <h2>Tipprunde</h2>
-    <h3>Informationen</h3>
+    <h2>Überblick</h2>
     <p><strong>Name:</strong> {{ round["name"] }}</p>
     <p><strong>Beschreibung:</strong> {{ round["description"] }}</p>
 </section>
@@ -95,7 +94,7 @@
 <section class="card">
         <h3>Aktionen</h3>
         <form method="POST" action="/leave-round/{{ round['id'] }}">
-            <button type="submit" class="button">Tipprunde verlassen</button>
+            <button type="submit" class="button">Tippspiel verlassen</button>
         </form>
 
         <p><a href="/dashboard" class="button">Zurück zum Dashboard</a></p>
