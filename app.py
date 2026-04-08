@@ -32,8 +32,7 @@ def login():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    if "user_id" not in session:
-        return redirect("/login")
+    
     if request.method =="POST":
         username = request.form["username"]
         password = request.form["password"]

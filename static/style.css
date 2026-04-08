@@ -10,7 +10,7 @@ main {
     padding: 20px;
 }
 .card{
-    background-color: rgb(241, 240, 240);
+    background-color: rgb(191, 187, 187);
     padding: 20px;
     margin-bottom:20px;
     border-radius: 8px;
@@ -23,7 +23,7 @@ main {
 .button {
     display: inline-block;
     padding: 6px 8px;
-    background-color: #3170b4;
+    background-color: #055ebe;
     color: white;
     text-decoration: none;
     border: 2px solid #8e0f0f;
@@ -33,7 +33,7 @@ main {
     margin-bottom: 5px;
 }
 .button:hover {
-    background-color: #444547;
+    background-color: #000000;
 }
 .small-text {
     font-size: 14px; 
