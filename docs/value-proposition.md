@@ -62,3 +62,5 @@ Tipp abgeben
 Ergebnisse einsehen  
 ↓  
 Rangliste
+↓  
+Logout
