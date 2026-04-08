@@ -2,10 +2,10 @@
 
 ## Table of contents
 
--[Problemstellung](#problemstellung)
--[Lösung](#lösung)
--[Zielgruppe](#zielgruppe)
--[Nutzung](#nutzung)
+-   [Problemstellung](#problemstellung)
+-   [Lösung](#lösung)
+-   [Zielgruppe](#zielgruppe)
+-   [Nutzung](#nutzung)
 
 ##  Problemstellung
 

@@ -2,11 +2,11 @@
 
 ## Table of contents
 
--[Überblick](#überblick)
--[Frontend](#frontend)
--[Backend](#backend)
--[Datenbankanbindung](#datenbankanbindung)
--[Datenfluss](#datenfluss)
+-   [Überblick](#überblick)
+-   [Frontend](#frontend)
+-   [Backend](#backend)
+-   [Datenbankanbindung](#datenbankanbindung)
+-   [Datenfluss](#datenfluss)
 
 ## Überblick
 
