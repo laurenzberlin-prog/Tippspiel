@@ -2,6 +2,12 @@
 
 Projekt für die Design Challenge E "Tippspiel".
 
+## Autor
+
+Laurenz Brödemann
+-   Studiengang: Wirtschaftsinformatik
+-   Matrikelnummer: 77211922572
+
 ##  Zielsetzung
 
 Das Projekt Tippspiel widmet sich der Aufgabe Kolleg:innen dabei zu unterstützen, Tippspiele für Events wie bspw. Fußballturniere einfach zu organisieren, aufzusetzen und durchzuführen. 

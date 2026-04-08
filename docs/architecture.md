@@ -1,5 +1,13 @@
 # Architektur
 
+## Table of contents
+
+-[Überblick](#überblick)
+-[Frontend](#frontend)
+-[Backend](#backend)
+-[Datenbankanbindung](#datenbankanbindung)
+-[Datenfluss](#datenfluss)
+
 ## Überblick
 
 Im Rahmen der Design-Challenge "Tippspiel" wurde eine serverseitge Webanwendung erstellt. 
