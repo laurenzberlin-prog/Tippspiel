@@ -29,7 +29,7 @@ Umgesetzte Funktionen der Anwendung sind:
 
 ##  Zielgruppe
 
-Die Zielgruppe sind kleine Gruppen von Arbeitskolleg:innen, die ohne großen organisatorischen Aufwand ein gemeinsames Tippspiel durchführen möchten.
+Die Zielgruppe sind Gruppen von Arbeitskolleg:innen oder Bekannten, die ohne großen organisatorischen Aufwand ein gemeinsames Tippspiel durchführen möchten.
 
 ##  Nutzererlebnis
 
@@ -44,7 +44,7 @@ Das Nutzererlebnis beschreibt die typische Nutzung und den Ablauf der Anwndung
 5.  Hier kann der Nutzer:
     -   Eine neue Tipprunde erstellen, nachdem er über den Button "Neues Tippspiel erstellen" auf die entsprechende Seite geleitet wird und hier einen Namen und eine Beschreibung für die Tipprunde eingibt und diese speichtert
     -   Einem bestehendem Tippspiel über das Textfeld unter "Tippspiel beitreten" beitreten
-    -   Unter "Meine Tippspiele" sehen, welchen Tippspielen er beigetreten ist und die aufrufen
+    -   Unter "Meine Tippspiele" sehen, welchen Tippspielen er beigetreten ist und diese aufrufen
     -   Sich über den "Abmelden" Button ausloggen. 
 6. Wird eine Runde aufgerufen, welcher der Nutzer beigetreten oder diese erstellt hat, kann er hier offene und beendete Spiele einsehen, Tipps dazu abgeben sowie eine Rangliste aller teilnehmer begutachten. Ist der Nutzer der Ersteller der Tipprunde, kann er zudem zukünftige Spiele erstellen, welche im Rahmen der Runde getippt werden können. Zudem kann er die tatsächlichen Ergebnisse eingeben. 
 
