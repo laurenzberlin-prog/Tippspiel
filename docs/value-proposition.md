@@ -5,7 +5,8 @@
 -   [Problemstellung](#problemstellung)
 -   [Lösung](#lösung)
 -   [Zielgruppe](#zielgruppe)
--   [Nutzung](#nutzererlebnis)
+-   [Nutzererlebnis](#nutzererlebnis)
+-   [Use-Case-Flow](#use-case-flow)
 
 ##  Problemstellung
 
@@ -62,3 +63,9 @@ Tipp abgeben
 Ergebnisse einsehen  
 ↓  
 Rangliste
+
+## Use-Case-Flow
+
+Das Use-Case-Flow Diagram dient dem visualisieren des typischen Nutzererlebnisses
+
+![Use-Case-Flow](screenshot/use_case-flow.png)
