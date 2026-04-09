@@ -8,8 +8,6 @@ Sämtliche relevante Informationen der Anwendung werden mit Verwendung einer SQL
 -   [Tabellenbeschreibung](#tabellenbeschreibung)
 -   [Beziehungen](#beziehungen)
 -   [Schematische Darstellung](#schematische-darstellung)
--   [Datenbankanbindung](#datenbankanbindung)
--   [Datenfluss](#datenfluss)
 
 ## Tabellenbeschreibung
 
@@ -88,47 +86,40 @@ Zentrale Beziehungen sind enthalten::
 
 ## Schematische Darstellung
 
-```mermaid
-erDiagram
-    USERS ||--o{ ROUND_MEMBERS : "participates in"
-    ROUNDS ||--o{ ROUND_MEMBERS : "contains members"
-    ROUNDS ||--o{ MATCHES : "contains"
-    MATCHES ||--o{ PREDICTIONS : "has"
-    USERS ||--o{ PREDICTIONS : "submits"
+users
+- id
+- username
+- password
 
-    USERS {
-        INTEGER id
-        TEXT username
-        TEXT password
-    }
+round_members
+- id
+- user_id
+- round_id
 
-    ROUNDS {
-        INTEGER id
-        TEXT name
-        TEXT description
-        INTEGER creator_user_id
-    }
+rounds
+- id
+- name
+- description
+- creator_user_id
 
-    ROUND_MEMBERS {
-        INTEGER id
-        INTEGER user_id
-        INTEGER round_id
-    }
+matches
+- id
+- round_id
+- match_date
+- home_team
+- away_team
+- actual_home_score
+- actual_away_score
 
-    MATCHES {
-        INTEGER id
-        INTEGER round_id
-        TEXT match_date
-        TEXT home_team
-        TEXT away_team
-        INTEGER actual_home_score
-        INTEGER actual_away_score
-    }
+predictions
+- id
+- user_id
+- match_id
+- predicted_home_score
+- predicted_away_score
 
-    PREDICTIONS {
-        INTEGER id
-        INTEGER user_id
-        INTEGER match_id
-        INTEGER predicted_home_score
-        INTEGER predicted_away_score
-    }
+Beziehungen:
+- users ↔ round_members ↔ rounds
+- rounds → matches
+- matches → predictions
+- users → predictions
