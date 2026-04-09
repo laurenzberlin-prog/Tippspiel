@@ -20,8 +20,9 @@ In der Tabelle `users`werden alle registrierten Nutzer gespeichtert.
 -   `id`: Primärschlüssel
 -   `username`: eindeutiger Nutzername
 -   `password`: individuelles Passwort
+
 **Besonderheit:**
--   Der Nutzername `username`ist eindeutig (`UNIQUE`)
+-    Der Nutzername `username`ist eindeutig (`UNIQUE`)
 
 ### rounds
 In der Tabelle `rounds`werden die Tippspiele gespeichert.
@@ -31,8 +32,9 @@ In der Tabelle `rounds`werden die Tippspiele gespeichert.
 -   `name`: Name des Tippspiels
 -   `description`: Beschreibung der Runde
 -   `creator_user_id`: ID des Erstellers der Runde
+
 **Besonderheiten**
--   Der Name des Tippspiels ist eindeutig (`UNIQUE`)
+-    Der Name des Tippspiels ist eindeutig (`UNIQUE`)
 -   `creator_user_id`legt fest, wer Spiele und Ergebnisse verwalten kann- dieser handelt dementsprechend als Admin des spezifischen Tippspiels
 
 ### round_members
@@ -42,8 +44,9 @@ In der Tabelle `round-members` werden Nutzer mit den einzelnen Tippspielen verbu
 -   `id`: Primärschlüssel
 -   `user_id`: Verweis auf Nutzer
 -   `round_id`: Verweis auf Tippspiel
+
 **Besonderheit**
--   `user_id`und `round_id`ist eindeutig (`UNIQUE`), damit ein Nutzer nur einmal in einer Runde vertreten sein kann.
+-    `user_id`und `round_id`ist eindeutig (`UNIQUE`), damit ein Nutzer nur einmal in einer Runde vertreten sein kann.
 
 ### matches
 In der Tabelle `matches` werden die Spiele einer Tipprunde gespeichert. Hier werden Spiele mit einzelnen Tippspielen verknüpft. Tatsächliche Ergebnisse werden später für die Rangliste genutzt.
@@ -66,8 +69,9 @@ In der Tabelle `predictions` werden die Tipps der Mitspieler gespeichtert.  Hier
 -   `match_id`: Verweis auf Spiel
 -   `predicted_home_score`: getippte Tore der Heimmannschaft
 -   `predicted_away_score`: getippte Torde der Auswärtsmannschaft
+
 **Besonderheit**
-`user_id`und `match_id` ist eindeutig (`UNIQUE`), damit pro Nutzer und pro Spiel nur ein Tipp abgegeben werden kann. 
+-    `user_id``user_id` und `match_id` ist eindeutig (`UNIQUE`), damit pro Nutzer und pro Spiel nur ein Tipp abgegeben werden kann. 
 
 ## Beziehungen
 
