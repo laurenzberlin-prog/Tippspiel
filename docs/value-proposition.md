@@ -38,6 +38,9 @@ Das Nutzererlebnis beschreibt die typische Nutzung und den Ablauf der Anwndung
 ### Ablauf
 
 1.  Nutzer öffnet die Anwendung gelangt zur Login-Seite
+
+![Login](screenshots/login.png)
+
 2.  Hat der Nutzer noch keine Daten, nutzt er den Button "Registrieren" und gelangt zur Registrieren-Seite
 3.  Hier kann er einen Namen und ein Passwort festlegen und wird zurück zur Login-Seite geleitet
 4.  Nach erfolgreichem Login wird das Dashboard angezeigt

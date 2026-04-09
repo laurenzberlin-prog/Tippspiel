@@ -207,7 +207,7 @@ Methoden: POST
 Zweck:
 save_prediction_route(round_id, match_id) speichert den Tipp eines Nutzenden für ein Spiel ab. Hierbei werden getippte Tore pro Mannschaft übergeben. 
 
-Ausgabe: Weiterleitunf zurück zur Ansicht der Tipprunde
+Ausgabe: Weiterleitung zurück zur Ansicht der Tipprunde
 
 ## Fehlerbehandlung
 
