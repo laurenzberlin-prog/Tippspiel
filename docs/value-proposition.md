@@ -68,4 +68,4 @@ Rangliste
 
 Das Use-Case-Flow Diagram dient dem visualisieren des typischen Nutzererlebnisses
 
-![Use-Case-Flow](screenshot/use_case-flow.png)
+![Use-Case-Flow](screenshot/use-case-flow.png)
