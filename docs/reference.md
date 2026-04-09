@@ -106,11 +106,11 @@ Methoden: GET, POST
 
 Zweck:
 dashboard() stellt das Dashboard, das Hauptmenü der Anwendung dar. Nacherfolgreicher Prüfung ob der Nutzende eingeloggt ist werden alle Tipprunden geladen, die der Nutzende beigetreten ist. 
-Zudem ermöglicht eine POST-Request das Beitreten zu bestehenden Tippspielen über den Namen des Spiels.
+Zudem ermöglicht eine POST-Request das Beitreten zu bestehenden Tippspielen über den Namen des Spiels, wobei geprüft wird, ob der Nutzende dieser bereits beigetreten ist.
 
 Ausgabe:
 Anzeige aller Tipprunden des Nutzers
-Eine erneute Weiterleitung zum Dashboard erfolgt nach dem Beitreten zu einer neuen Runde.
+Eine erneute Weiterleitung zum Dashboard erfolgt nach dem Beitreten zu einer neuen Runde. Eine Fehlermeldung wird angezeigt, wenn derselben Runde mehrmals probiert wird beizutreten. 
 
 ---
 ### create_round_page()
@@ -136,7 +136,7 @@ Methoden: GET
 
 Zweck:
 tippspiel(round_id) zeigt eine spezifische Tipprunde an, wobei alle dazugehörigen Nutzer, Spiele und bereits abgegebene Tipps geladen werden. 
-Außerdem wird die Rangliste aus allen bisher korrekten Tipps berechnet.
+Außerdem wird die Rangliste aus allen bisher korrekten Tipps berechnet. Ausgeblendete Spiele werden hierbei berücksichtigt.
 Zudem wird geprüft, ob der aktuelle Nutzer der Ersteller der Runde ist, um zusätzliche administrative Funktionen preiszugeben. 
 
 Ausgabe:

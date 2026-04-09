@@ -57,6 +57,10 @@ In der Tabelle `matches` werden die Spiele einer Tipprunde gespeichert. Hier wer
 -   `away_team`: Auswärtsmannschaft
 -   `actual_home_score`: Erzielte Tore der Heimmannschaft 
 -   `actual_away_score`: Erzielte Tore der Auswärtsmannschaft
+-   `is_hidden`: Kennzeichnet, ob ein Spiel ausgeblendet ist
+
+***Besonderheit:***
+-   Spiele werden nicht komplett gelöscht, sonder über `is_hidden`asgeblendet, damit die Tipprunde aufgeräumt werden kann, ohne die Rangliste zu beeinflussen
 
 ### predictions
 In der Tabelle `predictions` werden die Tipps der Mitspieler gespeichtert.  Hierbei gehört jeder Tipp zu genau einem Nutzer und einem Spiel in genau einem Tippspiel.
@@ -117,6 +121,7 @@ matches
 - away_team
 - actual_home_score
 - actual_away_score
+- is_hidden
 
 predictions
 - id
