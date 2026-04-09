@@ -1,4 +1,4 @@
-# Referenzen
+# Funktionsbeschreibung
 
 ## In diesem Abschnitt werden zentrale Funktionen der Anwendung beschrieben. 
 
@@ -53,7 +53,7 @@ Zweck:
 home() ist der Einstiegspunkt der Anwendung und leitet den Nutzenden auf die Login-Seite. 
 
 Ausgabe:
-Weiterleitung auf `login`.
+Weiterleitung auf `login`
 
 ---
 ### login()
@@ -140,7 +140,7 @@ Außerdem wird die Rangliste aus allen bisher korrekten Tipps berechnet. Ausgebl
 Zudem wird geprüft, ob der aktuelle Nutzer der Ersteller der Runde ist, um zusätzliche administrative Funktionen preiszugeben. 
 
 Ausgabe:
-Anzeige der Tipprunde inklusive Spiele, Tipps, Rangliste und, sofern Ersteller, die Möglichkeit zum Erstellen und Löschen neuer Spiele.
+Anzeige der Tipprunde inklusive Spiele, Tipps, Rangliste und, sofern Ersteller, die Möglichkeit zum Erstellen und Ausblenden neuer Spiele.
 
 ---
 ### leave_round(round_id)
@@ -154,3 +154,70 @@ Die Funktion entfernt den aktuellen Nutzer aus einer Tipprunde.
 
 Ausgabe:
 Weiterleitung zum Dashboard
+
+## Spiele und Tipps
+
+### add_match(round_id)
+
+Route: `/add-match/<round_id>`
+
+Methoden: POST
+
+Zweck:
+add_match ermöglicht dem Ersteller einer Tipprunde, ein neues Spiel hinzuzufügen. Hier werden Datum sowie Heim- und Auswärtsteams aus dem Formular übernommen und gepspeichert.
+Zuvor wird geprüft, ob der Nutzende Ersteller ist. Andernfalls wird ihm das Formular nicht angezeigt. 
+
+Ausgabe:
+Weiterleitung zur Ansicht der erweiterten Tipprunde
+
+---
+### save_match_result_route(round_id, match_id)
+
+Route: `save_match-result/<round_id>/match_id>``
+
+Methoden: POST
+
+Zweck:
+save_match_result_route(round_id, match_id) ermöglicht es dem Ersteller der Tipprunde, das tatsächliche Egebnis eines getippten Spiel abzuspeichern. Tore der beiden Mannschaften werden übergeben und gespeichert.
+
+Ausgabe:
+Weiterleitung zur Ansicht der Tipprunde
+
+---
+### delete_match_route(match_id, round_id)
+
+Route: `/delete-match/<match_id>/<round_id>``
+
+Methoden: POST
+
+Zweck:
+delete_match_route(match_id, round_id) blendet ein Spiel aus der Tipprunde aus. Aufgrund von Tipps gespeichterte Punkte bleiben jedoch in der rangliste bestehen. 
+Nur dem Ersteller der Tipprunde wird diese Funktion angezeigt. 
+
+Ausgabe:
+Weiterleitung zurück zur Ansicht der Tipprunde
+
+___
+### save_prediction_route(round_id, match_id)
+
+Route `/save-prediction/<round_id>/match_id>``
+
+Methoden: POST
+
+Zweck:
+save_prediction_route(round_id, match_id) speichert den Tipp eines Nutzenden für ein Spiel ab. Hierbei werden getippte Tore pro Mannschaft übergeben. 
+
+Ausgabe: Weiterleitunf zurück zur Ansicht der Tipprunde
+
+## Fehlerbehandlung
+
+### page_not_found(e)
+
+Route: keine direkte Route
+Methode: keine direkte Methode
+
+Zweck:
+page_not_found(e) behandelt alle nicht vorhandenen Seiten innerhalb der Anwendung. Ein eigene 404-Seite wird statt der standard Flask-Fehlerseite angezeigt.
+
+Ausgabe: 
+Anzeige der benutzerdefinierten `404.html`-Seite mit HTTP-Statuscode 404 und Möglichkeit zum Login zurückzukehren. 
