@@ -56,22 +56,31 @@ Das Nutzererlebnis beschreibt die typische Nutzung und den Ablauf der Anwndung
 
 ![Create-Round](screenshots/create-round.png)
 
+
     -   Einem bestehendem Tippspiel über das Textfeld unter "Tippspiel beitreten" beitreten
+
 
 ![Dashboard2](screenshots/dashboard2.png)
 
+
     -   Unter "Meine Tippspiele" sehen, welchen Tippspielen er beigetreten ist und diese aufrufen
+
 
 ![Dashboard3](screenshots/dashboard3.png)
 
+
     -   Sich über den "Abmelden" Button ausloggen. 
+
 
 6. Wird eine Runde aufgerufen, welcher der Nutzer beigetreten oder diese erstellt hat, kann er hier offene und beendete Spiele einsehen, Tipps dazu abgeben sowie eine Rangliste aller teilnehmer begutachten. 
 
 ![Save-Prediction2](screenshots/save-prediction2.png)
 ![Rangliste](screenshots/rangliste.png
 )
+
+
 Ist der Nutzer der Ersteller der Tipprunde, kann er zudem zukünftige Spiele erstellen, welche im Rahmen der Runde getippt werden können. Zudem kann er die tatsächlichen Ergebnisse eingeben. 
+
 
 ![Create-Match](screenshots/create-match.png)
 ![Save-Prediction](screenshots/save-prediction.png)
