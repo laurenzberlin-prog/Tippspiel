@@ -73,16 +73,23 @@ In der Tabelle `predictions` werden die Tipps der Mitspieler gespeichtert.  Hier
 
 ## Beziehungen
 
-Zentrale Beziehungen sind enthalten::
-- Ein Nutzer kann an mehreren Tipprunden teilnehmen
-- Eine Tipprunde kann mehrere Nutzer enthalten 
-→ Beziehung über `round_members`
-- Eine Tipprunde kann mehrere Spiele enthalten
-→ Beziehung: `rounds → matches`
-- Ein Spiel kann mehrere Tipps besitzen
-→ Beziehung: `matches → predictions`
-- Ein Nutzer kann pro Spiel genau einen Tipp abgeben
-→ Beziehung: `users → predictions`
+Die Datenbank basiert auf mehreren miteinander verknüpften Tabellen, die die Struktur des Tippspiels abbilden.
+
+- **users ↔ rounds (m:n Beziehung)**  
+  Ein Nutzer kann an mehreren Tipprunden teilnehmen und eine Tipprunde kann mehrere Nutzer enthalten.  
+  Diese Beziehung wird über die Zwischentabelle `round_members` realisiert.
+
+- **rounds → matches (1:n Beziehung)**  
+  Eine Tipprunde kann mehrere Spiele enthalten, jedes Spiel gehört jedoch genau zu einer Tipprunde.
+
+- **matches → predictions (1:n Beziehung)**  
+  Ein Spiel kann mehrere Tipps enthalten, da jeder Nutzer einen Tipp zu einem Spiel abgeben kann.
+
+- **users → predictions (1:n Beziehung)**  
+  Ein Nutzer kann mehrere Tipps abgeben, jedoch höchstens einen Tipp pro Spiel (durch `UNIQUE(user_id, match_id)` sichergestellt).
+
+- **users → rounds (1:n Beziehung über creator_user_id)**  
+  Ein Nutzer kann mehrere Tipprunden erstellen, jede Tipprunde hat jedoch genau einen Ersteller (Creator).
 
 ## Schematische Darstellung
 
@@ -117,9 +124,3 @@ predictions
 - match_id
 - predicted_home_score
 - predicted_away_score
-
-Beziehungen:
-- users ↔ round_members ↔ rounds
-- rounds → matches
-- matches → predictions
-- users → predictions
