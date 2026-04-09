@@ -7,7 +7,7 @@ Sämtliche relevante Informationen der Anwendung werden mit Verwendung einer SQL
 ## Table of contents
 -   [Tabellenbeschreibung](#tabellenbeschreibung)
 -   [Beziehungen](#beziehungen)
--   [Schemantische Darstellung](#schematische-darstellung)
+-   [Schematische Darstellung](#schematische-darstellung)
 -   [Datenbankanbindung](#datenbankanbindung)
 -   [Datenfluss](#datenfluss)
 
@@ -38,7 +38,7 @@ In der Tabelle `rounds`werden die Tippspiele gespeichert.
 -   `creator_user_id`legt fest, wer Spiele und Ergebnisse verwalten kann- dieser handelt dementsprechend als Admin des spezifischen Tippspiels
 
 ### round_members
-In der Tabelle `round-members` werden Nutzer mit den einzelnen Tippspielen verbunden. Hier werden somit die Mitglieder einer Runde abgebildet.
+In der Tabelle `round_members` werden Nutzer mit den einzelnen Tippspielen verbunden. Hier werden somit die Mitglieder einer Runde abgebildet.
 
 **Felder**
 -   `id`: Primärschlüssel
@@ -77,49 +77,58 @@ In der Tabelle `predictions` werden die Tipps der Mitspieler gespeichtert.  Hier
 
 Zentrale Beziehungen sind enthalten::
 - Ein Nutzer kann an mehreren Tipprunden teilnehmen
-- Eine Tipprunde kann mehrere Nutzer enthalten
+- Eine Tipprunde kann mehrere Nutzer enthalten 
+→ Beziehung über `round_members`
 - Eine Tipprunde kann mehrere Spiele enthalten
+→ Beziehung: `rounds → matches`
 - Ein Spiel kann mehrere Tipps besitzen
+→ Beziehung: `matches → predictions`
 - Ein Nutzer kann pro Spiel genau einen Tipp abgeben
+→ Beziehung: `users → predictions`
 
 ## Schematische Darstellung
 
-users
-- id
-- username
-- password
-        |
-        | 1:n
-        |
-round_members
-- id
-- user_id
-- round_id
-        |
-        | n:1
-        |
-rounds
-- id
-- name
-- description
-- creator_user_id
-        |
-        | 1:n
-        |
-matches
-- id
-- round_id
-- match_date
-- home_team
-- away_team
-- actual_home_score
-- actual_away_score
-        |
-        | 1:n
-        |
-predictions
-- id
-- user_id
-- match_id
-- predicted_home_score
-- predicted_away_score
+```mermaid
+erDiagram
+    USERS ||--o{ ROUND_MEMBERS : "participates in"
+    ROUNDS ||--o{ ROUND_MEMBERS : "contains members"
+    ROUNDS ||--o{ MATCHES : "contains"
+    MATCHES ||--o{ PREDICTIONS : "has"
+    USERS ||--o{ PREDICTIONS : "submits"
+
+    USERS {
+        INTEGER id
+        TEXT username
+        TEXT password
+    }
+
+    ROUNDS {
+        INTEGER id
+        TEXT name
+        TEXT description
+        INTEGER creator_user_id
+    }
+
+    ROUND_MEMBERS {
+        INTEGER id
+        INTEGER user_id
+        INTEGER round_id
+    }
+
+    MATCHES {
+        INTEGER id
+        INTEGER round_id
+        TEXT match_date
+        TEXT home_team
+        TEXT away_team
+        INTEGER actual_home_score
+        INTEGER actual_away_score
+    }
+
+    PREDICTIONS {
+        INTEGER id
+        INTEGER user_id
+        INTEGER match_id
+        INTEGER predicted_home_score
+        INTEGER predicted_away_score
+    }
