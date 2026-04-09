@@ -10,6 +10,10 @@ Projekt für die Design Challenge E "Tippspiel".
 -   [Referenz](reference.html)
 -   [Design-Decisions](design-decisions.html)
 -   [Quellen](sources.html)
+
+## About
+Die Anwendung "Tippspiel" ist eine elegante und simple Lösung für einen Bekanntenkreis wie beispielsweise Kolleg:innen im Arbeitsumfeld, die in einem sportlichem Rahmen ein Tippspiel durchführen wollen, in dem Sie sich gegeneinander messen.
+
 ## Autor
 
 Laurenz Brödemann
