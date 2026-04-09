@@ -66,6 +66,6 @@ Rangliste
 
 ## Use-Case-Flow
 
-Das Use-Case-Flow Diagram dient dem visualisieren des typischen Nutzererlebnisses
+Das Use-Case-Flow Diagram dient dem Visualisieren des typischen Nutzererlebnisses der Tippspiel-Anwendung.
 
-![Use-Case-Flow](screenshot/use-case-flow.png)
+![Use-Case-Flow](screenshots/use-case-flow.png)
