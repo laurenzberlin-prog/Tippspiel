@@ -27,17 +27,63 @@
 - [Fehlerbehandlung](#fehlerbehandlung)
   - [page_not_found(e)](#page_not_founde)
 
-  ## Core Logic
+## Core Logic
 
-  ### calculate_points()
+### calculate_points()
 
-  Route: keine
-  Methode: keine
+Route: keine
+Methode: keine
 
-  Zweck:
-  calculate_points() berechnet Punkte für abgegebene Tipps indem sie das getippte Ergebnis mit dem tatsächlichen Spielergebnis vergleicht. Dabei wird nur beachtet, ob auf das siegreiche Team oder Unentschieden getippt wurde. Die Höhe des Ergebnisses wird nicht berücksichtigt. 
+Zweck:
+calculate_points() berechnet Punkte für abgegebene Tipps indem sie das getippte Ergebnis mit dem tatsächlichen Spielergebnis vergleicht. Dabei wird nur beachtet, ob auf das siegreiche Team oder Unentschieden getippt wurde. Die Höhe des Ergebnisses wird nicht berücksichtigt. 
 
-  Ausgabe: 
-  Gibt `1`zurück, wenn das korrekte Ergebnis getippt wurde, `0`wenn nicht. 
+Ausgabe: 
+Gibt `1`zurück, wenn das korrekte Ergebnis getippt wurde, `0`wenn nicht. 
 
-  
+## Authentifizierung
+
+### home()
+
+Route: `/`
+Methoden: GET
+
+Zweck:
+home() ist der Einstiegspunkt der Anwendung und leitet den Nutzenden auf die Login-Seite. 
+
+Ausgabe:
+Weiterleitung auf `login`.
+---
+### login()
+
+Route: `/login``
+Methoden: GET, POST
+
+Zweck:
+login() verarbeitet den Login des Nutzenden. Bei einer POST-Request werden Benutzernamen und Passwort geprüft. Bei korrekten Daten wird eine Session für den Nutzer gestartet. 
+
+Ausgabe:
+Bei erfolgreichem Login erfolgt die Weiterleitung auf das Dashboard.
+Bei fehlgeschlagen Login wird die Login-Seite erneut mit einer Fehlermeldung angezeigt.
+---
+### register()
+
+Route: `/register`
+Methoden: GET, POST
+
+Zweck:
+register() ermöglicht das Registrieren für neue Nutzer. Gewählter Benutzername und Passwort werden aus dem Formular übernommen und in der Datenbank gespeichert. Außerdem wird geprüft, ob der gewählte Benutzername bereits vergeben ist.
+
+Ausgabe:
+Bei erfolgreichem Registrieren erfolgt die Weiterleitung zur Login-Seite. 
+Wenn der Benutzername bereits in Benutzung ist, wird die Registrierungsseite mit einer Fehlermeldung erneut angezeigt. 
+---
+### logout()
+
+Route: `/logout``
+Methoden: GET
+
+Zweck:
+Die Funktion meldet den aktuellen Nutzer ab, indem die Session gelöscht wird. 
+
+Ausgabe:
+Der Nutzende wird auf die Login-Seite weitergeleitet.
