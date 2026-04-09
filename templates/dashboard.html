@@ -5,6 +5,7 @@
 {% block content %}
     
 
+
     <section class="card">
         <h3>Neues Tippspiel</h3>
         <p>Erstelle ein neues Tippspiel.</p>
@@ -12,6 +13,9 @@
     </section>
 
     <section class="card">
+        {% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
         <h3>Tippspiel beitreten</h3>
         <form method="POST">
             <label for="round_name">Name des Tippspiels:</label><br>

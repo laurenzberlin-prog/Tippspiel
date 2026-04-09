@@ -36,8 +36,8 @@ def init_db():
             home_team TEXT NOT NULL,
             away_team TEXT NOT NULL,
             actual_home_score INTEGER,
-            actual_away_score INTEGER
-            is_hidden INTERGER NOT NULL DEFAULT 0
+            actual_away_score INTEGER,
+            is_hidden INTEGER NOT NULL DEFAULT 0
         )
     """)
 
@@ -176,6 +176,18 @@ def get_matches_by_round_id(round_id):
     conn.close()
     return matches
 
+def get_all_matches_by_round_id(round_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute(
+        "SELECT * FROM matches WHERE round_id = ?",
+        (round_id,)
+    )
+    matches = cursor.fetchall()
+    conn.close()
+    return matches
+
 def save_prediction(user_id, match_id, predicted_home_score, predicted_away_score):
     conn = get_connection()
     cursor = conn.cursor()
@@ -224,12 +236,18 @@ def get_round_by_name(name):
 def add_user_to_round(user_id, round_id):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute(
+
+    try:
+        cursor.execute(
         "INSERT INTO round_members (user_id, round_id) VALUES (?, ?)",
         (user_id, round_id)
     )
-    conn.commit()
-    conn.close()
+        conn.commit()
+    except sqlite3.IntegrityError:
+        pass
+    finally:    
+        conn.close()
+
 
 def remove_user_from_round(user_id, round_id):
     conn = get_connection()

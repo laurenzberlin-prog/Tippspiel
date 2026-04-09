@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session
-from database import init_db, create_user, get_user_by_username, create_round, get_all_rounds, get_round_by_id, add_user_to_round, get_users_by_round_id, remove_user_from_round, get_rounds_by_user_id, get_round_by_name, create_match, get_matches_by_round_id, delete_match, save_prediction, get_prediction_by_user_and_match, get_predictions_by_round_id, save_match_result
+from database import init_db, create_user, get_user_by_username, create_round, get_all_rounds, get_round_by_id, add_user_to_round, get_users_by_round_id, remove_user_from_round, get_rounds_by_user_id, get_round_by_name, create_match, get_matches_by_round_id, delete_match, save_prediction, get_prediction_by_user_and_match, get_predictions_by_round_id, save_match_result, get_all_matches_by_round_id
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 init_db()
@@ -55,6 +55,11 @@ def dashboard():
         round_data = get_round_by_name(round_name)
 
         if round_data:
+            users_in_round = get_users_by_round_id(round_data["id"])
+
+            if any(u["id"] == user_id for u in users_in_round):
+                rounds = get_rounds_by_user_id(user_id)
+                return render_template("dashboard.html", rounds=rounds, error="Du bist bereits in dieser Tipprunde!")
             add_user_to_round(user_id, round_data["id"])
 
         return redirect("/dashboard")
@@ -68,6 +73,7 @@ def tippspiel(round_id):
     round = get_round_by_id(round_id)
     users = get_users_by_round_id(round_id)
     matches = get_matches_by_round_id(round_id)
+    all_matches = get_all_matches_by_round_id(round_id)
     predictions = get_predictions_by_round_id(round_id)
 
     ranking = {}
@@ -76,7 +82,7 @@ def tippspiel(round_id):
         ranking[user["username"]] = 0
     
     match_result = {}
-    for match in matches:
+    for match in all_matches:
         if match["actual_home_score"] is not None and match["actual_away_score"] is not None:
             match_result[match["id"]] =(
                 match["actual_home_score"],
