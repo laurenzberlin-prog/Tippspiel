@@ -54,6 +54,7 @@ home() ist der Einstiegspunkt der Anwendung und leitet den Nutzenden auf die Log
 
 Ausgabe:
 Weiterleitung auf `login`.
+
 ---
 ### login()
 
@@ -67,6 +68,7 @@ login() verarbeitet den Login des Nutzenden. Bei einer POST-Request werden Benut
 Ausgabe:
 Bei erfolgreichem Login erfolgt die Weiterleitung auf das Dashboard.
 Bei fehlgeschlagen Login wird die Login-Seite erneut mit einer Fehlermeldung angezeigt.
+
 ---
 ### register()
 
@@ -80,6 +82,7 @@ register() ermöglicht das Registrieren für neue Nutzer. Gewählter Benutzernam
 Ausgabe:
 Bei erfolgreichem Registrieren erfolgt die Weiterleitung zur Login-Seite. 
 Wenn der Benutzername bereits in Benutzung ist, wird die Registrierungsseite mit einer Fehlermeldung erneut angezeigt. 
+
 ---
 ### logout()
 
@@ -108,6 +111,7 @@ Zudem ermöglicht eine POST-Request das Beitreten zu bestehenden Tippspielen üb
 Ausgabe:
 Anzeige aller Tipprunden des Nutzers
 Eine erneute Weiterleitung zum Dashboard erfolgt nach dem Beitreten zu einer neuen Runde.
+
 ---
 ### create_round_page()
 
@@ -122,6 +126,7 @@ Der aktuelle Nutzer wird automatisch als Ersteller der Runde gesetzt und der neu
 Ausgabe:
 Bei erfolgreicher Erstellung wird der Nutzende zum Dashboard weitergeleitet.
 Falls der gewählte Name der Tipprunde bereits vergeben ist, wird die Seite mit einer Fehlermeldung erneut angezeigt. 
+
 ---
 ### tippspiel(round_id)
 
@@ -136,6 +141,7 @@ Zudem wird geprüft, ob der aktuelle Nutzer der Ersteller der Runde ist, um zus�
 
 Ausgabe:
 Anzeige der Tipprunde inklusive Spiele, Tipps, Rangliste und, sofern Ersteller, die Möglichkeit zum Erstellen und Löschen neuer Spiele.
+
 ---
 ### leave_round(round_id)
 
