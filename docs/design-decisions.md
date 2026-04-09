@@ -87,5 +87,5 @@ Die Lösung ermöglicht eine Trennung zwischen Datenhaltung und der Darstellung,
 -   stablie und nachvollziehbare Rangliste
 -   bessere Übersicht
 
-**Nachteile*
+**Nachteile**
 -   zusätzlich Bedinung (`is_hidden`) erforderlich
