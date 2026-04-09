@@ -37,6 +37,7 @@ def init_db():
             away_team TEXT NOT NULL,
             actual_home_score INTEGER,
             actual_away_score INTEGER
+            is_hidden INTERGER NOT NULL DEFAULT 0
         )
     """)
 
@@ -157,7 +158,7 @@ def delete_match(match_id):
     cursor = conn.cursor()
 
     cursor.execute(
-        "DELETE FROM matches WHERE id = ?",
+        "UPDATE matches SET is_hidden = 1 WHERE id = ?",
         (match_id,)
     )
     conn.commit()
@@ -168,7 +169,7 @@ def get_matches_by_round_id(round_id):
     cursor = conn.cursor()
     
     cursor.execute(
-        "SELECT * FROM matches WHERE round_id = ? ORDER BY match_date ASC",
+        "SELECT * FROM matches WHERE round_id = ? AND is_hidden = 0",
         (round_id,)
     )
     matches = cursor.fetchall()
