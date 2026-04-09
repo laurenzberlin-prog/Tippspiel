@@ -1,10 +1,10 @@
 # Referenzen
 
-##
-In diesem Abschnitt werden zentrale Funktionen der Anwendung beschrieben. 
+## In diesem Abschnitt werden zentrale Funktionen der Anwendung beschrieben. 
 
 ## Table of contents
 - [Core Logic](#core-logic)
+  - [calculate_points()](#calculate_points)
 
 - [Authentifizierung](#authentifizierung)
   - [home()](#home)
@@ -26,3 +26,18 @@ In diesem Abschnitt werden zentrale Funktionen der Anwendung beschrieben.
 
 - [Fehlerbehandlung](#fehlerbehandlung)
   - [page_not_found(e)](#page_not_founde)
+
+  ## Core Logic
+
+  ### calculate_points()
+
+  Route: keine
+  Methode: keine
+
+  Zweck:
+  calculate_points() berechnet Punkte für abgegebene Tipps indem sie das getippte Ergebnis mit dem tatsächlichen Spielergebnis vergleicht. Dabei wird nur beachtet, ob auf das siegreiche Team oder Unentschieden getippt wurde. Die Höhe des Ergebnisses wird nicht berücksichtigt. 
+
+  Ausgabe: 
+  Gibt `1`zurück, wenn das korrekte Ergebnis getippt wurde, `0`wenn nicht. 
+
+  
