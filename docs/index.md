@@ -1,4 +1,4 @@
-#   Tippspiel
+#   Home
 
 Projekt für die Design Challenge E "Tippspiel".
 
