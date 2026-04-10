@@ -8,6 +8,7 @@
 -   [HTML & Templates](#html--templates)
 -   [Backend & Flask](#backend--flask)
 -   [CSS & Design](#css--design)
+-   [Akademische Quellen](#akademische-quellen-bereitsgestellt-im-rahmen-der-modul-lehre)
 
 ## HTML & Templates
 
