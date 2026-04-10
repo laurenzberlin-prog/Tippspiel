@@ -34,6 +34,7 @@ Das Backend basiert auf Flask und findet sich in `app.py`wieder.
 Hier werden Aufgaben zum Routing, Verarbeiten von Formularen, Login-Logik, der Session-Verwaltung, der Rechteprüfung und dem Berechnen der Rangliste bearbeitet. 
 
 Die Logik ist dementsprechend von der visuellen Darstellung getrennt. 
+Eine genaue Beschreibung der unterschiedlichen Funktionen ist unter [Reference](reference.html) wieder zu finden. 
 
 ## Datenbankanbindung
 
