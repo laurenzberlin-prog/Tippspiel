@@ -8,7 +8,11 @@
 -   [HTML & Templates](#html--templates)
 -   [Backend & Flask](#backend--flask)
 -   [CSS & Design](#css--design)
--   [Akademische Quellen](#akademische-quellen-bereitsgestellt-im-rahmen-der-modul-lehre)
+-   [Akademische Quellen]
+(#akademische-quellen-bereitsgestellt-im-rahmen-der-modul-lehre)
+-   [Nutzung von künstlicher Intelligenz](#nutzung-von-künstlicher-intelligenz)
+    -   [Verwendete KI Tools](#verwendete-ki-tools)
+    -   [Art und Umfang der Nutzung](#art-und-umfang-der-nutzung)
 
 ## HTML & Templates
 
@@ -38,9 +42,24 @@
 
 
 ## Akademische Quellen (bereitsgestellt im Rahmen der Modul-Lehre) 
+
 -   https://github.com/hwrberlin/fswd-app
     -   https://hwrberlin.github.io/fswd/fswd-intro.html
     -   https://hwrberlin.github.io/fswd/flask.html
     -   https://hwrberlin.github.io/fswd/html-css.html
     -   https://hwrberlin.github.io/fswd/user-interfaces.html
     -   https://hwrberlin.github.io/fswd/sqlalchemy.html
+
+## Nutzung von Künstlicher Intelligenz
+
+### Verwendete KI-Tools
+
+-   ChatGPT (OpenAI): https://chatgpt.com
+-   Claude (Anthropic): https://claude.ai/
+-   Grammarly: https://www.grammarly.com
+
+### Art und Umfang der Nutzung
+
+KI-Tools wurden grundlegend in weiten Teilen der Projektarbeit unterstützend genutzt. Herauszuhebende Schwerpunkte, für welche diese zum Einsatz dienten dem Erläutern der Logik, Flask, Routen, Requests, Debugging und strukturellen Fragen. Darüber hinaus wurde zu Beginn der Projektarbeit ein Roter Faden erarbeiten, welcher dazu diente, einen geordneten Verlauf zum Erstellen des Quellcodes sowie zur späteren Dokumentation zu visualisieren. Entlang dieser Anleitungen wurden logische Schritte durchgeführt. Der Plan wurde jedoch im Laufe des Projekts erweitert, da Änderungen und Verbesserungen bei der Umsetzung bemerkt wurde. Eine Beispiel ist das Ändern des Löschens eines Spiels aus der Datenbank zu einem Ausblenden (siehe [Design Decisions](#design-decisions.md)) 
+
+Zu Keinem Zeitpunkt wurdenn KI-Tools als Copy & Paste Tool verwendet oder übernahmen Aufgaben zur Entscheidungen über Funktionen und Aussehen der Anwendungen, Durchführung, Ausbesserungen, Implementierung und die tatsächliche Codeerstellung. Ausgenommen ist reine Code-Completion.
