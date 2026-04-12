@@ -169,15 +169,15 @@ Ausgabe:
 
 Beispiel des Grundgerüsts, was auf jedem Template einheitlich sein soll:
 <!DOCTYPE html>
-<html lang="de">
+```<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>´´´{% block title %}Meine Website{% endblock %}´´´</title>
+    <title>{% block title %}Meine Website{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-
+```
     <header class="site-header">
         <h1>Mein Projekt</h1>
         <nav class="site-nav">
