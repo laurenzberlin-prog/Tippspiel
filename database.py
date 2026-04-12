@@ -106,15 +106,6 @@ def create_round(name, description, creator_user_id):
     finally:        
         conn.close()
 
-
-def get_all_rounds():
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM rounds")
-    rounds = cursor.fetchall()
-    conn.close()
-    return rounds
-
 def get_rounds_by_user_id(user_id):
     conn = get_connection()
     cursor = conn.cursor()
@@ -193,7 +184,7 @@ def save_prediction(user_id, match_id, predicted_home_score, predicted_away_scor
     cursor = conn.cursor()
     cursor.execute(
         """
-        INSERT OR REPLACE INTO predictions
+        INSERT INTO predictions
         (user_id, match_id, predicted_home_score, predicted_away_score)
         VALUES (?, ?, ?, ?)
         """,

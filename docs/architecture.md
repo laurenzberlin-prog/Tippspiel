@@ -18,7 +18,7 @@ Zentrale Ebenen bestehen aus dem Frontend mit HTML und CSS, dem Backend mit Flas
 
 Das Frontend wurde mit HTML-Templates und CSS umgesetzt. Die HTML-Strukturen nutzen hierbei das von Flask unterstütze Jinja2. 
 
-Die implemtierten templates sind
+Die implemtierten Templates sind
 -   `base.html` --> Dieses liefert das Grundlayout aller Screens
 -   `login.html` --> Hier kann sich der Nutzende mit den eigen Daten einloggen
 -   `register.html`--> Hier kann sich der Nutzende mit einem Namen und Passwort registrieren

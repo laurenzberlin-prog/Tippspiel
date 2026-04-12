@@ -56,7 +56,7 @@
                     {% endif %}
                
               
-                {% set prediction = get_prediction_by_user_and_match(current_user_id, match['id']) %}
+                {% set prediction = user_predictions.get(match['id']) %}    
                 {% if prediction %}
                     <p>
                         Dein Tipp
