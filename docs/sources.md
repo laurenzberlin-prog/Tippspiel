@@ -173,7 +173,7 @@ Beispiel des Grundgerüsts, was auf jedem Template einheitlich sein soll:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Meine Website{% endblock %}</title>
+    <title>´´´{% block title %}Meine Website{% endblock %}´´´</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
