@@ -75,7 +75,7 @@ Zu keinem Zeitpunkt wurden KI-Tools als Copy & Paste Tool. Ausgenommen ist reine
  Error  Wie kann ich eine 404-Error Seite in Flask mit HTMl erstellen und einbinden?
 
 Ausgabe:
-from flask import Flask, render_template
+```from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -160,7 +160,7 @@ ___
     </div>
 </body>
 </html>
-
+```
 ___
 #### Modularisierte Templates
 Wie baue ich ein Grundgerüst zur Modularisierung meiner HTML-Templates?
@@ -168,8 +168,8 @@ Wie baue ich ein Grundgerüst zur Modularisierung meiner HTML-Templates?
 Ausgabe:
 
 Beispiel des Grundgerüsts, was auf jedem Template einheitlich sein soll:
-<!DOCTYPE html>
-```<html lang="de">
+```<!DOCTYPE html>
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -177,7 +177,7 @@ Beispiel des Grundgerüsts, was auf jedem Template einheitlich sein soll:
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-```
+
     <header class="site-header">
         <h1>Mein Projekt</h1>
         <nav class="site-nav">
@@ -197,10 +197,11 @@ Beispiel des Grundgerüsts, was auf jedem Template einheitlich sein soll:
 
 </body>
 </html>
+```
 ___
 
 Beispiel eines von base.html erbenen Templates:
-{% extends "base.html" %}
+```{% extends "base.html" %}
 
 {% block title %}Login{% endblock %}
 
@@ -216,6 +217,7 @@ Beispiel eines von base.html erbenen Templates:
         <button type="submit">Einloggen</button>
     </form>
 {% endblock %}
+```
 ___
 
 #### Github Dokumentation:
@@ -226,33 +228,34 @@ Ein „Table of Contents“ ist einfach eine Liste mit Links zu deinen Überschr
 
 Wenn du in deiner Datei zum Beispiel solche Überschriften hast:
 
-.# Projektdokumentation
+```# Projektdokumentation
 
-.## Inhaltsverzeichnis
+## Inhaltsverzeichnis
 
 - [Einführung](#einführung)
 - [Ziel des Projekts](#ziel-des-projekts)
 - [Aufbau der Anwendung](#aufbau-der-anwendung)
 - [Screenshots](#screenshots)
 
-.## Einführung
+## Einführung
 
 Text...
 
-.## Ziel des Projekts
+## Ziel des Projekts
 
 Text...
 
-.## Aufbau der Anwendung
+## Aufbau der Anwendung
 
 Text...
 
-.## Screenshots
+## Screenshots
 
 Text...
 ___
 Fotos einfügen:
 ![Beschreibung](screenshots/Beschreibung.png)
+```
 ___
 #### Datenbanken Struktur
 Ich benötige eine Databenbanke Modul Struktur für ein Tippspiel. Dieses beinhalten Login, Registrieren, Runden erstellen, Spiele in die Runden einfügen, Nutzer der Runden, Tipps und eine rangliste für Punkte
