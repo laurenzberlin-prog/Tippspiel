@@ -75,10 +75,12 @@ Zu keinem Zeitpunkt wurden KI-Tools als Copy & Paste Tool. Ausgenommen ist reine
  Error  Wie kann ich eine 404-Error Seite in Flask mit HTMl erstellen und einbinden?
 
 Ausgabe:
-```from flask import Flask, render_template
 
-app = Flask(__name__)
+```python
+from flask import Flask, render_template
 
+    app = Flask(__name__)
+```
 @app.route("/")
 def home():
     return "<h1>Startseite</h1><p>Diese Seite existiert.</p>"
@@ -90,8 +92,10 @@ def page_not_found(error):
 
 if __name__ == "__main__":
     app.run(debug=True)
+```
 ___
 
+```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -161,20 +165,24 @@ ___
 </body>
 </html>
 ```
+
 ___
+
 #### Modularisierte Templates
 Wie baue ich ein Grundgerüst zur Modularisierung meiner HTML-Templates?
 
 Ausgabe:
 
 Beispiel des Grundgerüsts, was auf jedem Template einheitlich sein soll:
-```<!DOCTYPE html>
+
+```html
+<!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Meine Website{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% raw %}{% block title %}Meine Website{% endblock %}{% endraw %}</title>
+    <link rel="stylesheet" href="{% raw %}{{ url_for('static', filename='style.css') }}{% endraw %}">
 </head>
 <body>
 
@@ -188,7 +196,7 @@ Beispiel des Grundgerüsts, was auf jedem Template einheitlich sein soll:
     </header>
 
     <main class="content">
-        {% block content %}{% endblock %}
+                {% raw %}{% block content %}{% endraw %}
     </main>
 
     <footer class="site-footer">
@@ -198,14 +206,16 @@ Beispiel des Grundgerüsts, was auf jedem Template einheitlich sein soll:
 </body>
 </html>
 ```
+
 ___
 
 Beispiel eines von base.html erbenen Templates:
-```{% extends "base.html" %}
+```html
+{% raw %}{% extends "base.html" %}{% endraw %}
 
-{% block title %}Login{% endblock %}
+{% raw %}{% block title %}Login{% endblock %}{% endraw %}
 
-{% block content %}
+{% raw %}{% block content %}{% endraw %}
     <h2>Login</h2>
     <form method="POST">
         <label for="username">Benutzername</label>
@@ -216,8 +226,9 @@ Beispiel eines von base.html erbenen Templates:
 
         <button type="submit">Einloggen</button>
     </form>
-{% endblock %}
+{% raw %}{% endblock %}{% endraw %}
 ```
+
 ___
 
 #### Github Dokumentation:
@@ -228,7 +239,8 @@ Ein „Table of Contents“ ist einfach eine Liste mit Links zu deinen Überschr
 
 Wenn du in deiner Datei zum Beispiel solche Überschriften hast:
 
-```# Projektdokumentation
+```md
+# Projektdokumentation
 
 ## Inhaltsverzeichnis
 
@@ -252,11 +264,15 @@ Text...
 ## Screenshots
 
 Text...
-___
+
+```
+
 Fotos einfügen:
 ![Beschreibung](screenshots/Beschreibung.png)
 ```
+
 ___
+
 #### Datenbanken Struktur
 Ich benötige eine Databenbanke Modul Struktur für ein Tippspiel. Dieses beinhalten Login, Registrieren, Runden erstellen, Spiele in die Runden einfügen, Nutzer der Runden, Tipps und eine rangliste für Punkte
 
@@ -335,6 +351,7 @@ class Leaderboard:
     - Sorts users by total points
     """
 ___
+
 #### IntegritiyError:
 Wie funktioniert sqlite3.IntegrityError zum abfangen von Fehlern einer Datenbank-Regel?
 
@@ -355,6 +372,7 @@ try:
 except sqlite3.IntegrityError:
     print("Benutzername existiert bereits.")
 ___
+
 #### Ausblenden im Template
 Statt etwas über einen Button aus der Datenbank zu löschen, möchte ich, dass der Eintrag lediglich aus dem Template ausgeblendet wird.
 
